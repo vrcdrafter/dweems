@@ -19,9 +19,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_direction.x * speed
 	velocity.z = move_direction.z * speed
 	velocity.y -= gravity * delta
-	print("speed",speed)
-	print("Move_direction",move_direction)
-	print("body is trying to move",velocity)
+	
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
