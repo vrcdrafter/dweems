@@ -3,8 +3,7 @@ extends CharacterBody3D
 @export var speed := 7.0
 @export var jump_strength := 20.0
 @export var gravity := 50.0
-
-
+@export var animation_flags = [0,0,0,0,0] # forward back left right jump
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
 
@@ -23,10 +22,28 @@ func _physics_process(delta: float) -> void:
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
+		animation_flags[4] = 1
 		velocity.y = jump_strength
 		_snap_vector = Vector3.ZERO
 	elif just_landed:
 		_snap_vector = Vector3.DOWN
+	
+	# begin flag setting for export animaiton 
+	
+	if Input.get_action_strength("right") > 0 and is_on_floor():
+		animation_flags[4] = 1
+	elif Input.get_action_strength("left") > 0 and is_on_floor():
+		animation_flags[3] = 1
+	elif Input.get_action_strength("forward") > 0 and is_on_floor():
+		animation_flags[0] = 1
+	elif Input.get_action_strength("back") > 0 and is_on_floor():
+		animation_flags[1] = 1
+	else:
+		animation_flags = [0,0,0,0,0]
+		
+	print(animation_flags)
+	# end flag setting for export animation . 
+	
 	
 	move_and_slide()
 func _process( delta: float) -> void:
