@@ -6,7 +6,7 @@ var animation_track_handle
 func _ready():
 	animation_handle = get_node("../AnimationPlayer")
 	
-	animation_track_handle = animation_handle.get_animation("run")
+	animation_track_handle = animation_handle.get_animation("idle")
 	
 	
-	animation_handle.play("run")
+	animation_handle.play("idle")
