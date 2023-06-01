@@ -9,4 +9,4 @@ func _ready():
 	animation_track_handle = animation_handle.get_animation("idle")
 	print("action taking place")
 	
-	animation_handle.play("idle")
+	#animation_handle.play("idle")
