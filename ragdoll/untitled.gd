@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_flags = [0,0,0,0,0]
 		
-	print(animation_flags)
+	
 	# end flag setting for export animation . 
 	
 	
