@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var animation_flags = [0,0,0,0,0] # forward back left right jump
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
-
+var jump_flipflop = false
 @onready var _spring_arm: SpringArm3D = $SpringArm3D
 @onready var _model: Node3D  = $fox_body
 
@@ -22,22 +22,25 @@ func _physics_process(delta: float) -> void:
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO
 	var is_jumping := is_on_floor() and Input.is_action_just_pressed("jump")
 	if is_jumping:
-		animation_flags[4] = 1
+		jump_flipflop = true
 		velocity.y = jump_strength
 		_snap_vector = Vector3.ZERO
 	elif just_landed:
+		jump_flipflop = false
 		_snap_vector = Vector3.DOWN
 	
 	# begin flag setting for export animaiton 
 	
 	if Input.get_action_strength("right") > 0 and is_on_floor():
-		animation_flags[4] = 1
-	elif Input.get_action_strength("left") > 0 and is_on_floor():
 		animation_flags[3] = 1
+	elif Input.get_action_strength("left") > 0 and is_on_floor():
+		animation_flags[2] = 1
 	elif Input.get_action_strength("forward") > 0 and is_on_floor():
 		animation_flags[0] = 1
 	elif Input.get_action_strength("back") > 0 and is_on_floor():
 		animation_flags[1] = 1
+	elif  jump_flipflop:
+		animation_flags[4] = 1
 	else:
 		animation_flags = [0,0,0,0,0]
 		
