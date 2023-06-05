@@ -22,7 +22,11 @@ func _process(delta):
 	current_rotation = snapped(current_rotation.y,0.01)
 	spin_velocity = model_rotate_command - current_rotation
 	
-	#print("model_rot ",model_rotate_command," current rotate ",current_rotation)
-	print("clamped, velocity ",spin_velocity)
+
 	spin_velocity = deg_to_rad(spin_velocity)
 	transform.basis = Basis(axis, spin_velocity) * transform.basis
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "jump":
+		print("jump_finished")

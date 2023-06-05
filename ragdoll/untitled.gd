@@ -10,6 +10,11 @@ var jump_flipflop = false
 @onready var _spring_arm: SpringArm3D = $SpringArm3D
 @onready var _model: Node3D  = $fox_body
 
+func _ready():
+	var timer = get_node("untitled/AnimationPlayer")
+	timer.animation_finished.connect(_on_animation_player_animation_finished)
+
+
 func _physics_process(delta: float) -> void:
 	var move_direction := Vector3.ZERO
 	move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -24,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	if is_jumping:
 		jump_flipflop = true
 		velocity.y = jump_strength
+		
 		_snap_vector = Vector3.ZERO
 	elif just_landed:
 		jump_flipflop = false
@@ -51,3 +57,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 func _process( delta: float) -> void:
 	_spring_arm.position = position
+	
+	
+func _on_animation_player_animation_finished(anim_name):
+	print("remote connection complete")

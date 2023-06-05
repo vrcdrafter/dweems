@@ -22,3 +22,4 @@ func _process(delta):
 	
 	if flag[4] == 1:
 		animation_handle.play("jump")
+		
