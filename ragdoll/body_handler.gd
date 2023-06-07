@@ -7,6 +7,8 @@ var axis = Vector3(0, 1, 0)
 var current_rotation = Vector3(0, 0, 0)
 var spin_velocity 
 
+@export var anim_ready_jump := false
+
 func _process(delta):
 	rotation_handle = get_node("../SpringArm3D")
 	
@@ -26,7 +28,10 @@ func _process(delta):
 	spin_velocity = deg_to_rad(spin_velocity)
 	transform.basis = Basis(axis, spin_velocity) * transform.basis
 
+	# at end of process force animation_ready_jump = false 
+	anim_ready_jump = false
 
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "jump":
-		print("jump_finished")
+func jump_sig_custom():
+	print("custom jump _signal")
+	anim_ready_jump = true
+
