@@ -35,3 +35,7 @@ func jump_sig_custom():
 	print("custom jump _signal")
 	anim_ready_jump = true
 
+
+
+func _on_animation_player_animation_finished(anim_name):
+	pass # Replace with function body.

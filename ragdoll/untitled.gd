@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var jump_strength := 20.0
 @export var gravity := 50.0
 @export var animation_flags = [0,0,0,0,0,0] # forward back left right jump
+@export var land_flag = false
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
 var jump_flipflop :bool = false
@@ -14,10 +15,11 @@ var handle_anim_ready_to_jump
 var anim_ready_to_jump:bool = false
 
 func _ready():
-	pass
-
+	var timer = get_node("untitled/AnimationPlayer")
+	timer.animation_finished.connect(_on_animation_player_animation_finished)
 
 func _physics_process(delta: float) -> void:
+	
 	
 	# pull in jump data
 	handle_anim_ready_to_jump = get_node("untitled")
@@ -44,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		_snap_vector = Vector3.ZERO
 	
 	elif just_landed:
-		animation_flags[5] = 1
+		land_flag = true
 		print("just_landed")
 		jump_flipflop = false
 		_snap_vector = Vector3.DOWN
@@ -66,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		animation_flags = [0,0,0,0,0,0]
 		
-	print(animation_flags)
+	#print(animation_flags)
 	# end flag setting for export animation . 
 	#reset jump anim var so its ready for next jump 
 	anim_ready_to_jump = false
@@ -75,4 +77,7 @@ func _physics_process(delta: float) -> void:
 func _process( delta: float) -> void:
 	_spring_arm.position = position
 	
-# at completion of animate then do the velocity on the y for jump 
+	
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "land":
+		land_flag = false
