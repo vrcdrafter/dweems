@@ -8,7 +8,7 @@
 height = 2.30437
 
 [node name="untitled" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00951624, 0.00231206, 0.0213754)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00951624, 0.00231206, 0.0213754)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_5nvuh")
@@ -26,3 +26,4 @@ script = ExtResource("2_3s06r")
 current = true
 
 [node name="untitled" parent="." instance=ExtResource("3_q82yb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

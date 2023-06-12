@@ -22,7 +22,7 @@ func _process(delta):
 	model_rotate_command = snapped(model_rotate_command,0.01)
 	
 	current_rotation = snapped(current_rotation.y,0.01)
-	spin_velocity = model_rotate_command - current_rotation
+	spin_velocity = model_rotate_command - current_rotation - 90 # subtracted 90 to get rot right 
 	
 
 	spin_velocity = deg_to_rad(spin_velocity)
