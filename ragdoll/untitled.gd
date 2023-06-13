@@ -10,7 +10,7 @@ var _snap_vector := Vector3.DOWN
 var jump_flipflop :bool = false
 @onready var _spring_arm: SpringArm3D = $SpringArm3D
 @onready var _model: Node3D  = $fox_body
-
+@onready var on_floor = false
 var handle_anim_ready_to_jump
 var anim_ready_to_jump:bool = false
 
@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	# end flag setting for export animation . 
 	#reset jump anim var so its ready for next jump 
 	anim_ready_to_jump = false
-	
+	on_floor = is_on_floor()
 	move_and_slide()
 func _process( delta: float) -> void:
 	_spring_arm.position = position
