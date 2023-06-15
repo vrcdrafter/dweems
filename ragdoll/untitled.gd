@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		
 		animation_flags = [0,0,1,0,0,0]
 	elif Input.get_action_strength("forward") > 0 and is_on_floor():
-		
+
 		animation_flags = [1,0,0,0,0,0]
 	elif Input.get_action_strength("back") > 0 and is_on_floor():
 		
@@ -86,3 +86,4 @@ func _process( delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "land":
 		land_flag = false
+
