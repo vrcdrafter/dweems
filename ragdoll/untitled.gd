@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed := 7.0
-@export var jump_strength := 20.0
+@export var jump_strength := 17.0
 @export var gravity := 50.0
 @export var animation_flags = [0,0,0,0,0,0] # forward back left right jump
 @export var land_flag = false

@@ -21,18 +21,15 @@ func _process(delta):
 	
 	animation_track_handle = animation_handle.get_animation("idle")
 	
+	print(flag)
 	
-	
-	if flag[4] == 1 or is_jumping: # this is a problem 
-		animation_handle.play("jump")
-		is_jumping = true
-	if flag[3] == 1 and !is_jumping:
+	if flag[3] == 1:
 		animation_handle.play("straft_l") 
-	elif flag[2] == 1 and !is_jumping:
+	elif flag[2] == 1 :
 		animation_handle.play("straft_r")
-	elif flag[1] == 1 and !is_jumping:
+	elif flag[1] == 1 :
 		animation_handle.play("backwards")
-	elif flag[0] == 1 and !is_jumping:
+	elif flag[0] == 1 :
 		animation_handle.play("walk")
 
 	else:
@@ -40,10 +37,10 @@ func _process(delta):
 		
 		if landed: # might be triggering before floor
 			print("should be landing")
-			#animation_handle.stop()
+
 			animation_handle.play("land")
 			is_jumping = false
-		elif flag[4] == 1 or is_jumping: # this is a problem 
+		elif (flag[4] == 1 or is_jumping): # this is a problem 
 			print("jump triggered ")
 			animation_handle.play("jump")
 			is_jumping = true
@@ -59,5 +56,6 @@ func _process(delta):
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "jump" and landed:
+		animation_handle.stop()
 		is_jumping = false
 		print("null")

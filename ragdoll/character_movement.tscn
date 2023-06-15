@@ -14,7 +14,7 @@ collision_mask = 2
 script = ExtResource("1_5nvuh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138035, 0.794687, -0.0354961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138035, 1.08261, -0.0354961)
 shape = SubResource("CapsuleShape3D_tgl2x")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -23,6 +23,7 @@ margin = 0.02
 script = ExtResource("2_3s06r")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739872, 0)
 current = true
 
 [node name="untitled" parent="." instance=ExtResource("3_q82yb")]
