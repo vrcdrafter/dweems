@@ -56,15 +56,20 @@ func _physics_process(delta: float) -> void:
 	# begin flag setting for export animaiton 
 	#print(animation_flags)
 	if Input.get_action_strength("right") > 0 and is_on_floor():
-		animation_flags[3] = 1
+		
+		animation_flags = [0,0,0,1,0,0]
 	elif Input.get_action_strength("left") > 0 and is_on_floor():
-		animation_flags[2] = 1
+		
+		animation_flags = [0,0,1,0,0,0]
 	elif Input.get_action_strength("forward") > 0 and is_on_floor():
-		animation_flags[0] = 1
+		
+		animation_flags = [1,0,0,0,0,0]
 	elif Input.get_action_strength("back") > 0 and is_on_floor():
-		animation_flags[1] = 1
+		
+		animation_flags = [0,1,0,0,0,0]
 	elif  is_on_floor() and Input.is_action_just_pressed("jump"):
-		animation_flags[4] = 1
+		
+		animation_flags = [0,0,0,0,1,0]
 	else:
 		animation_flags = [0,0,0,0,0,0]
 		
