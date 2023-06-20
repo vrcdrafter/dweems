@@ -23,7 +23,6 @@ margin = 0.02
 script = ExtResource("2_3s06r")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.739872, 0)
 current = true
 
 [node name="untitled" parent="." instance=ExtResource("3_q82yb")]

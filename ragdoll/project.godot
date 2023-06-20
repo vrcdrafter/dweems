@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Ragdoll"
-run/main_scene="res://ragdoll_test.tscn"
+run/main_scene="res://house_scene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sketchfab/plugin.cfg")
 
 [filesystem]
 
