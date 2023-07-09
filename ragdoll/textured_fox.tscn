@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxejsvftgm71t"]
+
+[ext_resource type="PackedScene" uid="uid://bv0wqp4355qer" path="res://textured_fox.glb" id="1_q2b5m"]
+[ext_resource type="ArrayMesh" uid="uid://bsk1pgtwjdxjq" path="res://FOX_MESH.tres" id="2_kl0u8"]
+
+[node name="textured_fox" instance=ExtResource("1_q2b5m")]
+
+[node name="Cube001" parent="Armature (Mecha g)/Skeleton3D" index="0"]
+mesh = ExtResource("2_kl0u8")
