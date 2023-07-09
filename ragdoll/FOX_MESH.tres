@@ -1,6 +1,6 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://bplq15hgxfgei"]
+[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://bsk1pgtwjdxjq"]
 
-[ext_resource type="Texture2D" uid="uid://bjpgudmlfdyau" path="res://textured_fox_Untitled.png" id="1_g4laa"]
+[ext_resource type="Texture2D" uid="uid://q52nhwpqytui" path="res://textured_fox_Untitled.png" id="1_g4laa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3ieg"]
 resource_name = "Material.003"
