@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dq3fjhyi7lv5h" path="res://fox_body_4.tscn" id="3_q82yb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgl2x"]
-height = 2.30437
+radius = 0.422758
+height = 2.00779
 
 [node name="untitled" type="CharacterBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00951624, 0.00231206, 0.0213754)
@@ -14,7 +15,7 @@ collision_mask = 2
 script = ExtResource("1_5nvuh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138035, 1.08261, -0.0354961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138035, 0.0755358, -0.0354961)
 shape = SubResource("CapsuleShape3D_tgl2x")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
@@ -26,4 +27,4 @@ script = ExtResource("2_3s06r")
 current = true
 
 [node name="untitled" parent="." instance=ExtResource("3_q82yb")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.876121, 0)
