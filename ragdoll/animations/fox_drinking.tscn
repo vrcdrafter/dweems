@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw2uoao2qkfpg"]
+
+[ext_resource type="PackedScene" uid="uid://bw5ejdpo4iffj" path="res://animations/fox_drinking.glb" id="1_p3eby"]
+
+[node name="fox_drinking" instance=ExtResource("1_p3eby")]
+
+[node name="Armature (Mecha g)" parent="." index="0"]
+transform = Transform3D(0.986035, 0.151696, -0.0687264, -0.143556, 0.9834, 0.110981, 0.0844209, -0.0995647, 0.991443, -0.137859, -0.0666346, 0.101798)
+
+[node name="Skeleton3D" parent="Armature (Mecha g)" index="0"]
+bones/1/rotation = Quaternion(0.769228, -0.0288757, 0.0627737, 0.635228)
+bones/2/rotation = Quaternion(0.138971, 0.0642361, -0.00268982, 0.988207)
+bones/3/rotation = Quaternion(0.0897501, 0.000160042, 0.00966916, 0.995917)
+bones/4/rotation = Quaternion(-0.128262, 0.000288557, 0.0101126, 0.991689)
+bones/5/rotation = Quaternion(-0.0182293, 0.00690057, 0.00766224, 0.999781)
+bones/7/rotation = Quaternion(-0.453727, -0.553915, -0.449419, 0.534166)
+bones/8/rotation = Quaternion(-0.420879, 0.324133, -0.455697, 0.71424)
+bones/9/rotation = Quaternion(0.240198, -0.0291528, -0.769732, 0.590735)
+bones/10/rotation = Quaternion(0.111048, -0.0455514, 0.013243, 0.992682)
+bones/13/rotation = Quaternion(-0.523477, 0.492942, 0.394378, 0.57223)
+bones/14/rotation = Quaternion(-0.606754, -0.219887, 0.303417, 0.701026)
+bones/15/rotation = Quaternion(0.0747102, 0.0477193, 0.239066, 0.966948)
+bones/16/rotation = Quaternion(0.110118, -0.0418651, -0.0116112, 0.992969)
+bones/19/rotation = Quaternion(-0.887936, -0.137048, -0.204179, 0.388713)
+bones/20/rotation = Quaternion(0.864368, -0.0714638, 0.0416127, 0.496014)
+bones/21/rotation = Quaternion(-0.735525, -0.0167271, 0.150325, 0.660398)
+bones/22/rotation = Quaternion(-0.000753452, -0.860489, 0.509465, 0.00180206)
+bones/25/rotation = Quaternion(-0.91203, 0.143956, -0.0395778, 0.381984)
+bones/26/rotation = Quaternion(0.839435, -0.0922221, -0.0308954, 0.534687)
+bones/27/rotation = Quaternion(-0.811362, -0.0113148, -0.0314748, 0.583587)
+bones/28/rotation = Quaternion(2.81374e-07, 0.926104, -0.377269, 7.39924e-08)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqv7os70gkkry"]
+
+[ext_resource type="Script" path="res://untitled.gd" id="1_h66ra"]
+[ext_resource type="Script" path="res://SpringArm3D.gd" id="1_n7c4b"]
+[ext_resource type="PackedScene" uid="uid://b7hj3bqunfp28" path="res://animations/fox_body_5.tscn" id="2_bv0bc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eoyi7"]
+radius = 0.422758
+height = 2.00779
+
+[node name="untitled" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_h66ra")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0138035, 0.0755358, -0.0354961)
+shape = SubResource("CapsuleShape3D_eoyi7")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+collision_mask = 4
+spring_length = 3.0
+margin = 0.02
+script = ExtResource("1_n7c4b")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+current = true
+
+[node name="untitled" parent="." instance=ExtResource("2_bv0bc")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.801083, 0)

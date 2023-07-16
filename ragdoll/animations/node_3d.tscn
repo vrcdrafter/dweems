@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4thrmn7uijey"]
+
+[ext_resource type="PackedScene" uid="uid://vv6ua6setoee" path="res://animations/fox_drinking_3.glb" id="1_0aapm"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="fox_drinking_3" parent="." instance=ExtResource("1_0aapm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.090656, 0, 0.183746)

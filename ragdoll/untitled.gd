@@ -50,8 +50,10 @@ func _physics_process(delta: float) -> void:
 		print("just_landed")
 		jump_flipflop = false
 		_snap_vector = Vector3.DOWN
-		
-		
+	
+	# begin routine for pickup and throw 
+	
+	# end routine for pickup and throw
 
 	# begin flag setting for export animaiton 
 	#print(animation_flags)
