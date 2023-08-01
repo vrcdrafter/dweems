@@ -103,11 +103,5 @@ size = Vector3(2, 4, 4)
 [node name="Node3D2" parent="." instance=ExtResource("3_ln8wc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26213, -0.815835, 0.929564)
 
-[node name="Node3D3" parent="." instance=ExtResource("3_ln8wc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57729, -0.815835, 0.929564)
-
-[node name="Node3D4" parent="." instance=ExtResource("3_ln8wc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57729, -0.815835, -1.39574)
-
 [node name="untitled" parent="." instance=ExtResource("3_pbcwd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.994941, -0.833669, 1.44332)

@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://tcrutepb5ghh"]
+
+[ext_resource type="Script" path="res://TESTS/RigidBody3D.gd" id="2_chhvg"]
+[ext_resource type="PackedScene" uid="uid://dynlqlpmlpa5p" path="res://ITEMS/coffee_cup.tscn" id="2_gyfqn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_go2f6"]
+
+[sub_resource type="PointMesh" id="PointMesh_5am42"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 5, -0.21224)
+projection = 1
+size = 6.0
+
+[node name="Node3D" parent="." instance=ExtResource("2_gyfqn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114624, -1.19209e-07, -0.260755)
+
+[node name="RigidBody3D" parent="Node3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_chhvg")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.04312, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_go2f6")
+
+[node name="Node3D2" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491144, 0.174, 1.01311)
+mesh = SubResource("PointMesh_5am42")
+skeleton = NodePath("../../CSGMesh3D")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.930663, 0.706777, 0.330948)
+mesh = SubResource("PointMesh_5am42")
+skeleton = NodePath("../../CSGMesh3D")
+
+[editable path="Node3D"]
