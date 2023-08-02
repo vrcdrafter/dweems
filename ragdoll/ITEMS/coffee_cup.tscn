@@ -6,16 +6,13 @@
 height = 0.57201
 radius = 0.20366
 
-[node name="Node3D" type="Node3D"]
+[node name="RigidBody3D" type="RigidBody3D"]
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0991045, 0)
 shape = SubResource("CylinderShape3D_t4cbx")
 
-[node name="Cube" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = ExtResource("2_6viig")
 skeleton = NodePath("")

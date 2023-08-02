@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://tcrutepb5ghh"]
 
-[ext_resource type="Script" path="res://TESTS/RigidBody3D.gd" id="2_chhvg"]
 [ext_resource type="PackedScene" uid="uid://dynlqlpmlpa5p" path="res://ITEMS/coffee_cup.tscn" id="2_gyfqn"]
+[ext_resource type="Script" path="res://TESTS/RigidBody3D.gd" id="2_ni03w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_go2f6"]
 
@@ -16,10 +16,7 @@ size = 6.0
 
 [node name="Node3D" parent="." instance=ExtResource("2_gyfqn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.114624, -1.19209e-07, -0.260755)
-
-[node name="RigidBody3D" parent="Node3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("2_chhvg")
+script = ExtResource("2_ni03w")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.04312, 0)
@@ -29,7 +26,7 @@ mesh = SubResource("BoxMesh_go2f6")
 [node name="Node3D2" type="Node3D" parent="."]
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491144, 0.174, 1.01311)
+transform = Transform3D(0.183952, -0.313516, 0.931595, 0, -0.947768, -0.318959, 0.982935, 0.0586731, -0.174344, 0.491144, 0.174, 1.01311)
 mesh = SubResource("PointMesh_5am42")
 skeleton = NodePath("../../CSGMesh3D")
 

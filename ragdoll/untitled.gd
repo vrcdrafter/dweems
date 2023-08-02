@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	# end routine for pickup and throw
 
 	# begin flag setting for export animaiton 
-	print(animation_flags)
+
 	if Input.get_action_strength("right") > 0 and is_on_floor():
 		
 		animation_flags[0] = 0
