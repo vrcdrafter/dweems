@@ -3,16 +3,16 @@
 [ext_resource type="ArrayMesh" uid="uid://b2d80tgxmmq2y" path="res://ITEMS/COFFE_CUP.tres" id="2_6viig"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t4cbx"]
-height = 0.57201
-radius = 0.20366
+height = 0.309201
+radius = 0.104981
 
 [node name="RigidBody3D" type="RigidBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0991045, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0407815, 0)
 shape = SubResource("CylinderShape3D_t4cbx")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = ExtResource("2_6viig")
 skeleton = NodePath("")
