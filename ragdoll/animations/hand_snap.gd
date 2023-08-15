@@ -1,11 +1,12 @@
 extends BoneAttachment3D
 
-
+var item_array = ["One", 2, 3, "Four"]
 
 var item_handle
 var hand_point_handle_1
 var hand_point_handle_2
 var hand_point_handle_3
+var collission_shape_handle
 var target_angle_z
 var target_angle_x
 var target_angle_y
@@ -48,14 +49,20 @@ func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 func _process(delta):
 	item_handle = get_node("../../../../../coffee")
 	hand_point_handle_1 = get_node("./origin")
-	
-	
+	collission_shape_handle = get_node("../../../Area3D")
 	
 	align_points_1 = hand_point_handle_1.global_transform.origin
 	
-	zoom_point(item_handle, align_points_1)
+	#zoom_point(item_handle, align_points_1)
 	
 	var quat_align = calc_angular_velocity(item_handle,hand_point_handle_1)
-	print(quat_align)
 	
-	item_handle.angular_velocity = quat_align
+	#item_handle.angular_velocity = quat_align
+	
+	# get me a list of all bodies in collission shape
+	print(collission_shape_handle.get_overlapping_bodies())
+
+
+			
+		
+	
