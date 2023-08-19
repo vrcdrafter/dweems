@@ -13,6 +13,7 @@ var target_angle_y
 
 var align_points_1
 var align_points_2
+var item_snapping = false
 
 func zoom_point(object_handle, target_position):
 	
@@ -46,23 +47,28 @@ func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 	return axis * angle * 22
 
 
+func pickup_item(): 
+	
+	item_snapping = true
+
 func _process(delta):
-	item_handle = get_node("../../../../../coffee")
-	hand_point_handle_1 = get_node("./origin")
-	collission_shape_handle = get_node("../../../Area3D")
-	
-	align_points_1 = hand_point_handle_1.global_transform.origin
-	
-	#zoom_point(item_handle, align_points_1)
-	
-	var quat_align = calc_angular_velocity(item_handle,hand_point_handle_1)
-	
-	#item_handle.angular_velocity = quat_align
-	
-	# get me a list of all bodies in collission shape
-	print(collission_shape_handle.get_overlapping_bodies())
-
-
-			
+	if item_snapping:
+		item_handle = get_node("../../../../../coffee")
+		hand_point_handle_1 = get_node("./origin")
+		collission_shape_handle = get_node("../../../Area3D")
 		
+		align_points_1 = hand_point_handle_1.global_transform.origin
+		
+		zoom_point(item_handle, align_points_1)
+		
+		var quat_align = calc_angular_velocity(item_handle,hand_point_handle_1)
+		
+		item_handle.angular_velocity = quat_align
+		
+		# get me a list of all bodies in collission shape
+		#print(collission_shape_handle.get_overlapping_bodies())
+	else:
+		pass
+
+
 	

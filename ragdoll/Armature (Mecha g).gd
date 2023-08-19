@@ -5,7 +5,8 @@ var animation_track_handle
 
 var anim_flag_handle
 var flag
-var landed 
+var landed
+var interacting  = false
 var is_in_air
 var is_jumping = false
 
@@ -24,40 +25,45 @@ func _process(delta):
 	#print(flag)
 	#print(landed)
 	
-	if flag[3] == 1 and not is_jumping and not landed:
+	if flag[3] == 1 and not is_jumping and not landed and not interacting:
 		animation_handle.play("straft_l") 
-	elif flag[2] == 1 and not is_jumping and not landed :
+	elif flag[2] == 1 and not is_jumping and not landed  and not interacting:
 		animation_handle.play("straft_r")
-	elif flag[1] == 1 and not is_jumping and not landed:
+	elif flag[1] == 1 and not is_jumping and not landed and not interacting:
 		animation_handle.play("backwards")
-	elif flag[0] == 1 and not is_jumping and not landed :
+	elif flag[0] == 1 and not is_jumping and not landed and not interacting:
 		print(flag[4])
-		if (Input.is_action_just_pressed("jump") or is_jumping) and not landed: # this is a problem 
+		if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
 			print("jump triggered ")
 			animation_handle.play("jump")
 			is_jumping = true
 		else:
 			animation_handle.play("walk")
-	elif not is_jumping and not landed:
+	elif not is_jumping and not landed and not interacting:
 		animation_handle.play("idle")
 		is_jumping = false
 		#print("playing idle")
-	if (flag[4] == 1 or is_jumping) and not landed: # this is a problem 
+	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
 		print("jump triggered ")
 		animation_handle.play("jump")
 		is_jumping = true
 	elif landed: # might be triggering before floor
 		print("should be landing")
-
 		animation_handle.play("land")
 		is_jumping = false
 
-
-
-
+# begin routine for aux animations 
+	if flag[6] == 1 and not is_jumping and not landed:
+		animation_handle.play("pickup")
+		print("pickup")
+		interacting = true
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "jump" and landed:
 		animation_handle.stop()
 		is_jumping = false
 		print("null")
+	if anim_name == "pickup":
+		
+		interacting = false
+		print("finished picking up ")

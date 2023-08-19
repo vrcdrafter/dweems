@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var speed := 7.0
 @export var jump_strength := 17.0
 @export var gravity := 50.0
-@export var animation_flags = [0,0,0,0,0,0] # forward back left right jump
+@export var animation_flags = [0,0,0,0,0,0,0,0,0] # forward back left right jump [6] pickup , [7] press  interact , [8] throw
 @export var land_flag = false
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
@@ -52,10 +52,20 @@ func _physics_process(delta: float) -> void:
 		_snap_vector = Vector3.DOWN
 	
 	# begin routine for pickup and throw 
-	var just_interact := Input.is_action_just_pressed("interact")
 
-	var just_throw := Input.is_action_just_pressed("throw")
 	
+	if Input.get_action_strength("interact") > 0 and is_on_floor():
+	
+		animation_flags[6] = 1
+	else:
+		animation_flags[6] = 0
+	
+
+	if Input.get_action_strength("throw") > 0 and is_on_floor():
+	
+		animation_flags[7] = 1
+	else:
+		animation_flags[7] = 0
 
 	
 	# end routine for pickup and throw
@@ -103,9 +113,15 @@ func _physics_process(delta: float) -> void:
 		animation_flags[4] = 1
 		animation_flags[5] = 0
 	else:
-		animation_flags = [0,0,0,0,0,0]
+		animation_flags[0] = 0
+		animation_flags[1] = 0
+		animation_flags[2] = 0
+		animation_flags[3] = 0
+		animation_flags[4] = 0
+		animation_flags[5] = 0
+
 		
-	#print(animation_flags)
+	
 	# end flag setting for export animation . 
 	#reset jump anim var so its ready for next jump 
 	anim_ready_to_jump = false
