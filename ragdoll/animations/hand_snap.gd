@@ -3,6 +3,9 @@ extends BoneAttachment3D
 var item_array = ["One", 2, 3, "Four"]
 
 var item_handle
+var item_handle_group
+var current_hand_item
+
 var hand_point_handle_1
 var hand_point_handle_2
 var hand_point_handle_3
@@ -52,23 +55,31 @@ func pickup_item():
 	item_snapping = true
 
 func _process(delta):
+	
 	if item_snapping:
+		
+		current_hand_item = item_handle_group[0] # this fails if it finds nothing 
+		
 		item_handle = get_node("../../../../../coffee")
+		
 		hand_point_handle_1 = get_node("./origin")
-		collission_shape_handle = get_node("../../../Area3D")
+		
 		
 		align_points_1 = hand_point_handle_1.global_transform.origin
 		
-		zoom_point(item_handle, align_points_1)
+		zoom_point(current_hand_item, align_points_1)
 		
-		var quat_align = calc_angular_velocity(item_handle,hand_point_handle_1)
+		var quat_align = calc_angular_velocity(current_hand_item,hand_point_handle_1)
 		
-		item_handle.angular_velocity = quat_align
+		current_hand_item.angular_velocity = quat_align
 		
 		# get me a list of all bodies in collission shape
-		#print(collission_shape_handle.get_overlapping_bodies())
+		
+
 	else:
-		pass
+		collission_shape_handle = get_node("../../../Area3D")
+		item_handle_group = collission_shape_handle.get_overlapping_bodies()
+		print(collission_shape_handle.get_overlapping_bodies())
 
 
 	

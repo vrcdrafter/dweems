@@ -10,6 +10,7 @@ var interacting  = false
 var is_in_air
 var is_jumping = false
 
+@export var pickup_thro_flip_flop = 1
 func _ready():
 	pass
 
@@ -42,7 +43,7 @@ func _process(delta):
 	elif not is_jumping and not landed and not interacting:
 		animation_handle.play("idle")
 		is_jumping = false
-		#print("playing idle")
+		print("playing idle")
 	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
 		print("jump triggered ")
 		animation_handle.play("jump")
@@ -54,16 +55,25 @@ func _process(delta):
 
 # begin routine for aux animations 
 	if flag[6] == 1 and not is_jumping and not landed:
-		animation_handle.play("pickup")
-		print("pickup")
-		interacting = true
-
-func _on_animation_player_animation_finished(anim_name):
+		if pickup_thro_flip_flop == 1:
+			animation_handle.play("pickup")
+			
+			print("pickup")
+			interacting = true
+		if pickup_thro_flip_flop == 2:
+			interacting = true
+			animation_handle.play("throw")
+			print("trying to throw")
+func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw
 	if anim_name == "jump" and landed:
 		animation_handle.stop()
 		is_jumping = false
 		print("null")
 	if anim_name == "pickup":
-		
+		pickup_thro_flip_flop = 2
 		interacting = false
 		print("finished picking up ")
+	if anim_name == "throw":
+		pickup_thro_flip_flop = 1
+		print("finished throw")
+		interacting = false

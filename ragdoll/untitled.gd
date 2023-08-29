@@ -13,6 +13,8 @@ var jump_flipflop :bool = false
 @onready var on_floor = false
 var handle_anim_ready_to_jump
 var anim_ready_to_jump:bool = false
+var collission_shape_handle
+var interact_script_handle 
 
 func _ready():
 	var timer = get_node("untitled/AnimationPlayer")
@@ -20,6 +22,11 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	
+	# pull the ineract handle 
+	interact_script_handle = get_node("./untitled/Armature (Mecha g)")
+	
+	# pul in collission data 
+	collission_shape_handle = get_node("./untitled/Area3D")
 	
 	# pull in jump data
 	handle_anim_ready_to_jump = get_node("untitled")
@@ -54,8 +61,8 @@ func _physics_process(delta: float) -> void:
 	# begin routine for pickup and throw 
 
 	
-	if Input.get_action_strength("interact") > 0 and is_on_floor():
-	
+	if Input.get_action_strength("interact") > 0 and is_on_floor() and (collission_shape_handle.has_overlapping_bodies() or (interact_script_handle.pickup_thro_flip_flop == 2)): 
+		
 		animation_flags[6] = 1
 	else:
 		animation_flags[6] = 0
