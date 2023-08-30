@@ -27,42 +27,53 @@ func _process(delta):
 	#print(landed)
 	
 	if flag[3] == 1 and not is_jumping and not landed and not interacting:
+		animation_handle.speed_scale = 1
 		animation_handle.play("straft_l") 
 	elif flag[2] == 1 and not is_jumping and not landed  and not interacting:
+		animation_handle.speed_scale = 1
 		animation_handle.play("straft_r")
 	elif flag[1] == 1 and not is_jumping and not landed and not interacting:
+		animation_handle.speed_scale = 1
 		animation_handle.play("backwards")
 	elif flag[0] == 1 and not is_jumping and not landed and not interacting:
 		print(flag[4])
 		if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
 			print("jump triggered ")
+			animation_handle.speed_scale = 1
 			animation_handle.play("jump")
 			is_jumping = true
 		else:
+			animation_handle.speed_scale = 1
 			animation_handle.play("walk")
 	elif not is_jumping and not landed and not interacting:
+		animation_handle.speed_scale = 1
 		animation_handle.play("idle")
 		is_jumping = false
 		print("playing idle")
 	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
 		print("jump triggered ")
+		animation_handle.speed_scale = 1
 		animation_handle.play("jump")
 		is_jumping = true
 	elif landed: # might be triggering before floor
 		print("should be landing")
+		animation_handle.speed_scale = 1
 		animation_handle.play("land")
 		is_jumping = false
 
 # begin routine for aux animations 
 	if flag[6] == 1 and not is_jumping and not landed:
 		if pickup_thro_flip_flop == 1:
+			animation_handle.speed_scale = 2
 			animation_handle.play("pickup")
 			
 			print("pickup")
 			interacting = true
 		if pickup_thro_flip_flop == 2:
 			interacting = true
+			animation_handle.speed_scale = 2
 			animation_handle.play("throw")
+			
 			print("trying to throw")
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw
 	if anim_name == "jump" and landed:

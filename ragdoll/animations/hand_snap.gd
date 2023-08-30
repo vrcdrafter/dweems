@@ -53,6 +53,10 @@ func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 func pickup_item(): 
 	
 	item_snapping = true
+	
+func pickup_throw(): 
+	
+	item_snapping = false
 
 func _process(delta):
 	
