@@ -16,6 +16,8 @@ var anim_ready_to_jump:bool = false
 var collission_shape_handle
 var interact_script_handle 
 
+var interacting = false
+
 func _ready():
 	var timer = get_node("untitled/AnimationPlayer")
 	timer.animation_finished.connect(_on_animation_player_animation_finished)
@@ -64,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	if Input.get_action_strength("interact") > 0 and is_on_floor() and (collission_shape_handle.has_overlapping_bodies() or (interact_script_handle.pickup_thro_flip_flop == 2)): 
 		
 		animation_flags[6] = 1
+		
 	else:
 		animation_flags[6] = 0
 	
@@ -71,6 +74,7 @@ func _physics_process(delta: float) -> void:
 	if Input.get_action_strength("throw") > 0 and is_on_floor():
 	
 		animation_flags[7] = 1
+		
 	else:
 		animation_flags[7] = 0
 
@@ -78,54 +82,55 @@ func _physics_process(delta: float) -> void:
 	# end routine for pickup and throw
 
 	# begin flag setting for export animaiton 
+	# only do movement if your not interacting 
+	if not interacting:
+		if Input.get_action_strength("right") > 0 and is_on_floor():
+			
+			animation_flags[0] = 0
+			animation_flags[1] = 0
+			animation_flags[2] = 0
+			animation_flags[3] = 1
+			animation_flags[4] = 0
+			animation_flags[5] = 0
+		elif Input.get_action_strength("left") > 0 and is_on_floor():
+			
+			animation_flags[0] = 0
+			animation_flags[1] = 0
+			animation_flags[2] = 1
+			animation_flags[3] = 0
+			animation_flags[4] = 0
+			animation_flags[5] = 0
+		elif Input.get_action_strength("forward") > 0 and is_on_floor():
 
-	if Input.get_action_strength("right") > 0 and is_on_floor():
-		
-		animation_flags[0] = 0
-		animation_flags[1] = 0
-		animation_flags[2] = 0
-		animation_flags[3] = 1
-		animation_flags[4] = 0
-		animation_flags[5] = 0
-	elif Input.get_action_strength("left") > 0 and is_on_floor():
-		
-		animation_flags[0] = 0
-		animation_flags[1] = 0
-		animation_flags[2] = 1
-		animation_flags[3] = 0
-		animation_flags[4] = 0
-		animation_flags[5] = 0
-	elif Input.get_action_strength("forward") > 0 and is_on_floor():
-
-		animation_flags[0] = 1
-		animation_flags[1] = 0
-		animation_flags[2] = 0
-		animation_flags[3] = 0
-		animation_flags[4] = 0
-		animation_flags[5] = 0
-	elif Input.get_action_strength("back") > 0 and is_on_floor():
-		
-		animation_flags[0] = 0
-		animation_flags[1] = 1
-		animation_flags[2] = 0
-		animation_flags[3] = 0
-		animation_flags[4] = 0
-		animation_flags[5] = 0
-	elif  is_on_floor() and Input.is_action_just_pressed("jump"):
-		
-		animation_flags[0] = 0
-		animation_flags[1] = 0
-		animation_flags[2] = 0
-		animation_flags[3] = 0
-		animation_flags[4] = 1
-		animation_flags[5] = 0
-	else:
-		animation_flags[0] = 0
-		animation_flags[1] = 0
-		animation_flags[2] = 0
-		animation_flags[3] = 0
-		animation_flags[4] = 0
-		animation_flags[5] = 0
+			animation_flags[0] = 1
+			animation_flags[1] = 0
+			animation_flags[2] = 0
+			animation_flags[3] = 0
+			animation_flags[4] = 0
+			animation_flags[5] = 0
+		elif Input.get_action_strength("back") > 0 and is_on_floor():
+			
+			animation_flags[0] = 0
+			animation_flags[1] = 1
+			animation_flags[2] = 0
+			animation_flags[3] = 0
+			animation_flags[4] = 0
+			animation_flags[5] = 0
+		elif  is_on_floor() and Input.is_action_just_pressed("jump"):
+			
+			animation_flags[0] = 0
+			animation_flags[1] = 0
+			animation_flags[2] = 0
+			animation_flags[3] = 0
+			animation_flags[4] = 1
+			animation_flags[5] = 0
+		else:
+			animation_flags[0] = 0
+			animation_flags[1] = 0
+			animation_flags[2] = 0
+			animation_flags[3] = 0
+			animation_flags[4] = 0
+			animation_flags[5] = 0
 
 		
 	
@@ -141,4 +146,24 @@ func _process( delta: float) -> void:
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "land":
 		land_flag = false
+		
+	if anim_name == "pickup":
+		
+		interacting = false
+		
+	if anim_name == "throw":
+		
+		
+		interacting = false
 
+
+
+func _on_animation_player_animation_started(anim_name):
+	if anim_name == "pickup":
+		
+		interacting = true
+		
+	if anim_name == "throw":
+		
+		
+		interacting = true
