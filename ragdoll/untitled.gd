@@ -34,14 +34,15 @@ func _physics_process(delta: float) -> void:
 	handle_anim_ready_to_jump = get_node("untitled")
 	anim_ready_to_jump = handle_anim_ready_to_jump.anim_ready_jump
 	# end pull in jump data 
+	if not interacting:
 	
-	var move_direction := Vector3.ZERO
-	move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	move_direction.z = Input.get_action_strength("back") - Input.get_action_strength("forward")
-	move_direction = move_direction.rotated(Vector3.UP,_spring_arm.rotation.y).normalized()
-	velocity.x = move_direction.x * speed
-	velocity.z = move_direction.z * speed
-	velocity.y -= gravity * delta
+		var move_direction := Vector3.ZERO
+		move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		move_direction.z = Input.get_action_strength("back") - Input.get_action_strength("forward")
+		move_direction = move_direction.rotated(Vector3.UP,_spring_arm.rotation.y).normalized()
+		velocity.x = move_direction.x * speed
+		velocity.z = move_direction.z * speed
+		velocity.y -= gravity * delta
 	
 	var just_landed := is_on_floor() and _snap_vector == Vector3.ZERO 
 	# starts the jump animation 
@@ -83,7 +84,8 @@ func _physics_process(delta: float) -> void:
 
 	# begin flag setting for export animaiton 
 	# only do movement if your not interacting 
-	if not interacting:
+	print("interacting", interacting)
+	if not interacting: # why doesnt this work !!!! 
 		if Input.get_action_strength("right") > 0 and is_on_floor():
 			
 			animation_flags[0] = 0
@@ -132,8 +134,6 @@ func _physics_process(delta: float) -> void:
 			animation_flags[4] = 0
 			animation_flags[5] = 0
 
-		
-	
 	# end flag setting for export animation . 
 	#reset jump anim var so its ready for next jump 
 	anim_ready_to_jump = false

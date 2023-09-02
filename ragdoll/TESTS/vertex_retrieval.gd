@@ -10,7 +10,7 @@ func _process(delta):
 	
 	vertex_point = mesh_handle.global_transform.origin
 
-	print("vertex point is ", vertex_point)
+	
 
 
 

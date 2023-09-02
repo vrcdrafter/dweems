@@ -77,7 +77,7 @@ func _process(delta):
 	align_points_2 = hand_point_handle_2.global_transform.origin
 	#align_axis(rigid_body_handle, align_points_1, align_points_2)
 	var quat_align = calc_angular_velocity(rigid_body_handle,hand_point_handle_1)
-	print(quat_align)
+	
 	
 	rigid_body_handle.angular_velocity = quat_align
 	

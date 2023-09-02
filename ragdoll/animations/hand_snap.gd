@@ -83,7 +83,7 @@ func _process(delta):
 	else:
 		collission_shape_handle = get_node("../../../Area3D")
 		item_handle_group = collission_shape_handle.get_overlapping_bodies()
-		print(collission_shape_handle.get_overlapping_bodies())
+		
 
 
 	
