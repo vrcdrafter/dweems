@@ -27,7 +27,7 @@ func zoom_point(object_handle, target_position):
 func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 	var q1 = Quaternion(rigid_body_handle.basis) # need to update to latest quat style for 4.0 documentation e
 	var q2 = Quaternion(hand_point_handle_1.global_transform.basis)
-
+	
 # Quaternion that transforms q1 into q2
 	var qt = q2 * q1.inverse()
 

@@ -49,7 +49,7 @@ func _process(delta):
 		animation_handle.speed_scale = 1
 		animation_handle.play("idle")
 		is_jumping = false
-		print("playing idle")
+		
 	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
 		print("jump triggered ")
 		animation_handle.speed_scale = 1
@@ -73,9 +73,10 @@ func _process(delta):
 			interacting = true
 			animation_handle.speed_scale = 2
 			animation_handle.play("throw")
-			
+		if pickup_thro_flip_flop == 3: # action , here is the where you do the drink animation 
+			pass
 			print("trying to throw")
-func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw
+func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
 	if anim_name == "jump" and landed:
 		animation_handle.stop()
 		is_jumping = false
@@ -84,6 +85,7 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		pickup_thro_flip_flop = 2
 		interacting = false
 		print("finished picking up ")
+	
 	if anim_name == "throw":
 		pickup_thro_flip_flop = 1
 		print("finished throw")

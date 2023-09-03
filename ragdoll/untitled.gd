@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 
 	# begin flag setting for export animaiton 
 	# only do movement if your not interacting 
-	print("interacting", interacting)
+	
 	if not interacting: # why doesnt this work !!!! 
 		if Input.get_action_strength("right") > 0 and is_on_floor():
 			
