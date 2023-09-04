@@ -4,8 +4,8 @@ var item_array = ["One", 2, 3, "Four"]
 
 var item_handle
 var item_handle_group
-var current_hand_item
-
+@export var current_hand_item = RigidBody3D.new() # this is bas because 
+# Pacing When I want to access the node and get teh is_in_group it fails because its references a generic null 
 var hand_point_handle_1
 var hand_point_handle_2
 var hand_point_handle_3
@@ -17,6 +17,9 @@ var target_angle_y
 var align_points_1
 var align_points_2
 var item_snapping = false
+
+# export the found item so the other nodes can make decisions on the items . 
+
 
 func zoom_point(object_handle, target_position):
 	
@@ -57,6 +60,12 @@ func pickup_item():
 func pickup_throw(): 
 	
 	item_snapping = false
+
+func _ready():
+	
+	current_hand_item.add_to_group("group_name")
+
+
 
 func _process(delta):
 	

@@ -6,7 +6,7 @@
 height = 0.309201
 radius = 0.104981
 
-[node name="RigidBody3D" type="RigidBody3D" groups=["item"]]
+[node name="RigidBody3D" type="RigidBody3D" groups=["food"]]
 collision_layer = 8
 collision_mask = 5
 continuous_cd = true

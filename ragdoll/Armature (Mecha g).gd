@@ -2,7 +2,8 @@ extends Node3D
 
 var animation_handle
 var animation_track_handle
-
+var whats_in_hand_haldle 
+var item_in_hand 
 var anim_flag_handle
 var flag
 var landed
@@ -20,11 +21,13 @@ func _process(delta):
 	landed = anim_flag_handle.land_flag
 	is_in_air = anim_flag_handle.on_floor
 	animation_handle = get_node("../AnimationPlayer")
-	
+	whats_in_hand_haldle = get_node("./Skeleton3D/BoneAttachment3D")
 	animation_track_handle = animation_handle.get_animation("idle")
 	
+	item_in_hand = whats_in_hand_haldle.current_hand_item
 	#print(flag)
 	#print(landed)
+	print("whats in the hand is a ", whats_in_hand_haldle.current_hand_item.is_in_group("food"))
 	
 	if flag[3] == 1 and not is_jumping and not landed and not interacting:
 		animation_handle.speed_scale = 1
@@ -70,12 +73,15 @@ func _process(delta):
 			print("pickup")
 			interacting = true
 		if pickup_thro_flip_flop == 2:
-			interacting = true
-			animation_handle.speed_scale = 2
-			animation_handle.play("throw")
-		if pickup_thro_flip_flop == 3: # action , here is the where you do the drink animation 
-			pass
-			print("trying to throw")
+			if whats_in_hand_haldle.current_hand_item.is_in_group("food"):
+				interacting = true
+				animation_handle.speed_scale = 2
+				animation_handle.play("drink")
+			else :
+				interacting = true
+				animation_handle.speed_scale = 2
+				animation_handle.play("throw")
+
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
 	if anim_name == "jump" and landed:
 		animation_handle.stop()
