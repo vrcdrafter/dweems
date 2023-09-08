@@ -18,6 +18,7 @@ var align_points_1
 var align_points_2
 var item_snapping = false
 
+var destroy_item_bool = false
 # export the found item so the other nodes can make decisions on the items . 
 
 
@@ -56,10 +57,15 @@ func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 func pickup_item(): 
 	
 	item_snapping = true
-	
+	destroy_item_bool = false
 func pickup_throw(): 
 	
 	item_snapping = false
+
+func destroy_item():
+	destroy_item_bool = true
+	
+	
 
 func _ready():
 	
@@ -69,7 +75,10 @@ func _ready():
 
 func _process(delta):
 	
-	if item_snapping:
+	
+	
+	
+	if item_snapping and (item_handle_group.size() != 0):
 		
 		current_hand_item = item_handle_group[0] # this fails if it finds nothing 
 		
@@ -87,12 +96,17 @@ func _process(delta):
 		current_hand_item.angular_velocity = quat_align
 		
 		# get me a list of all bodies in collission shape
-		
+		if destroy_item_bool:
+			current_hand_item.queue_free()
+			item_snapping = false
 
 	else:
 		collission_shape_handle = get_node("../../../Area3D")
 		item_handle_group = collission_shape_handle.get_overlapping_bodies()
 		
-
+	
+	
+	
+		
 
 	

@@ -25,9 +25,7 @@ func _process(delta):
 	animation_track_handle = animation_handle.get_animation("idle")
 	
 	item_in_hand = whats_in_hand_haldle.current_hand_item
-	#print(flag)
-	#print(landed)
-	print("whats in the hand is a ", whats_in_hand_haldle.current_hand_item.is_in_group("food"))
+	
 	
 	if flag[3] == 1 and not is_jumping and not landed and not interacting:
 		animation_handle.speed_scale = 1
@@ -95,4 +93,8 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 	if anim_name == "throw":
 		pickup_thro_flip_flop = 1
 		print("finished throw")
+		interacting = false
+	if anim_name == "drink":
+		pickup_thro_flip_flop = 1
+		print("finished drink")
 		interacting = false
