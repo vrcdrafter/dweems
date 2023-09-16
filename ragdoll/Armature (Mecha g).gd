@@ -79,7 +79,13 @@ func _process(delta):
 				interacting = true
 				animation_handle.speed_scale = 2
 				animation_handle.play("throw")
-
+	
+	if flag[8] == 1 and not is_jumping and not landed:
+		animation_handle.play("press")
+		interacting = true
+		print("press")
+		
+	
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
 	if anim_name == "jump" and landed:
 		animation_handle.stop()
@@ -96,5 +102,9 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		interacting = false
 	if anim_name == "drink":
 		pickup_thro_flip_flop = 1
+		print("finished drink")
+		interacting = false
+	if anim_name == "press":
+		
 		print("finished drink")
 		interacting = false

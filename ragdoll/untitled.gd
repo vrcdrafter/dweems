@@ -72,13 +72,17 @@ func _physics_process(delta: float) -> void:
 		animation_flags[6] = 0
 	
 
-	if Input.get_action_strength("throw") > 0 and is_on_floor():
+	if Input.get_action_strength("throw") > 0 and is_on_floor(): # note this is not used 
 	
 		animation_flags[7] = 1
 		
 	else:
 		animation_flags[7] = 0
-
+		
+	if Input.get_action_strength("push") > 0 and is_on_floor():
+		animation_flags[8] = 1
+	else:
+		animation_flags[8] = 0
 	
 	# end routine for pickup and throw
 
@@ -155,6 +159,10 @@ func _on_animation_player_animation_finished(anim_name):
 		
 		
 		interacting = false
+	if anim_name == "push":
+		
+		
+		interacting = false
 
 
 
@@ -165,5 +173,9 @@ func _on_animation_player_animation_started(anim_name):
 		
 	if anim_name == "throw":
 		
+		
+		interacting = true
+		
+	if anim_name == "push":
 		
 		interacting = true
