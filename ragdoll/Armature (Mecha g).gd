@@ -1,3 +1,4 @@
+
 extends Node3D
 
 var animation_handle
@@ -10,6 +11,8 @@ var landed
 var interacting  = false
 var is_in_air
 var is_jumping = false
+
+signal open_interact
 
 @export var pickup_thro_flip_flop = 1
 func _ready():
@@ -71,7 +74,7 @@ func _process(delta):
 			print("pickup")
 			interacting = true
 		if pickup_thro_flip_flop == 2:
-			if whats_in_hand_haldle.current_hand_item.is_in_group("food"):
+			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , could be null
 				interacting = true
 				animation_handle.speed_scale = 2
 				animation_handle.play("drink")
@@ -84,6 +87,7 @@ func _process(delta):
 		animation_handle.play("press")
 		interacting = true
 		print("press")
+		emit_signal("open_interact")
 		
 	
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
