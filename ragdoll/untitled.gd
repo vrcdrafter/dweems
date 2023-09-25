@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if is_jumping: # probably dont need this condition anymore
 		jump_flipflop = true
 		print("condition satisfied to jump")
-	
+
 	if is_on_floor() and anim_ready_to_jump:
 		velocity.y = jump_strength
 		_snap_vector = Vector3.ZERO
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	# begin flag setting for export animaiton 
 	# only do movement if your not interacting 
 	
-	if not interacting: # why doesnt this work !!!! 
+	if not interacting: # to make sure the character does not move  
 		if Input.get_action_strength("right") > 0 and is_on_floor():
 			
 			animation_flags[0] = 0
@@ -159,7 +159,7 @@ func _on_animation_player_animation_finished(anim_name):
 		
 		
 		interacting = false
-	if anim_name == "push":
+	if anim_name == "press":
 		
 		
 		interacting = false
@@ -176,6 +176,6 @@ func _on_animation_player_animation_started(anim_name):
 		
 		interacting = true
 		
-	if anim_name == "push":
+	if anim_name == "press":
 		
 		interacting = true

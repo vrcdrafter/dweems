@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3i4wdg83uyjt"]
+
+[ext_resource type="PackedScene" uid="uid://div4cectqyvi7" path="res://ITEMS/fridge_animated.glb" id="1_4vpuw"]
+[ext_resource type="Script" path="res://ITEMS/fridge.gd" id="1_aa6ga"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44yy2"]
+size = Vector3(2, 2, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_aa6ga")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_44yy2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.242736, 0.240941)
+visible = false
+use_collision = true
+collision_layer = 7
+collision_mask = 3
+size = Vector3(1.51737, 2.0049, 1.56065)
+
+[node name="fridge_animated" parent="." instance=ExtResource("1_4vpuw")]
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+[connection signal="area_exited" from="Area3D" to="Area3D" method="_on_area_exited"]
+[connection signal="animation_finished" from="fridge_animated/AnimationPlayer" to="Area3D" method="_on_animation_player_animation_finished"]
+
+[editable path="fridge_animated"]

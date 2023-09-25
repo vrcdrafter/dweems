@@ -17,7 +17,7 @@ func zoom_point(object_handle, target_position):
 	
 	var target_dir = (target_position - object_handle.transform.origin)
 	object_handle.linear_velocity = target_dir * 1
-	#print(target_dir)
+
 
 func align_axis(object_handle, target_point1,  target_point2):
 	

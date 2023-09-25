@@ -7,7 +7,7 @@ func _ready():
 	var item = "test"
 	var iterator = 0
 	for x in array_to_manage:
-		print(iterator)
+		
 	
 		if x is String:
 			print("found a string")

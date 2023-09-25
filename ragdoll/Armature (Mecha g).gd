@@ -40,7 +40,7 @@ func _process(delta):
 		animation_handle.speed_scale = 1
 		animation_handle.play("backwards")
 	elif flag[0] == 1 and not is_jumping and not landed and not interacting: # something is wrong with this code becasuse you can run when interacting 
-		print(flag[4])
+		
 		if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
 			print("jump triggered ")
 			animation_handle.speed_scale = 1
