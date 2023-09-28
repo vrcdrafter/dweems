@@ -25,7 +25,7 @@ func _process(delta):
 	animation_handle = get_node("../fridge_animated/AnimationPlayer")
 	
 	if viscinity == 1:
-		print("open door now",door_can_open_now,watchdog)
+		#print("open door now",door_can_open_now,watchdog)
 		if door_can_open_now and flip_flop_status == 1 and watchdog == 1:
 			
 			animation_handle.play("House Props  Fridge001Action")
@@ -34,7 +34,7 @@ func _process(delta):
 			animation_handle.play_backwards("House Props  Fridge001Action")
 	watchdog = 0
 func open_door():
-	print("manual connection called")
+	#print("manual connection called")
 	door_can_open_now = true
 	watchdog = 1
 	
