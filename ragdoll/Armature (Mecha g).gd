@@ -12,6 +12,8 @@ var interacting  = false
 var is_in_air
 var is_jumping = false
 
+var is_upper_handle
+
 signal open_interact
 
 @export var pickup_thro_flip_flop = 1
@@ -25,6 +27,7 @@ func _process(delta):
 	is_in_air = anim_flag_handle.on_floor
 	animation_handle = get_node("../AnimationPlayer")
 	whats_in_hand_haldle = get_node("./Skeleton3D/BoneAttachment3D")
+	is_upper_handle = get_node("../upper_pickup_box")
 	animation_track_handle = animation_handle.get_animation("idle")
 	
 	item_in_hand = whats_in_hand_haldle.current_hand_item
@@ -68,12 +71,17 @@ func _process(delta):
 # begin routine for aux animations 
 	if flag[6] == 1 and not is_jumping and not landed:
 		if pickup_thro_flip_flop == 1:
-			animation_handle.speed_scale = 2
-			animation_handle.play("pickup")
-			
-			print("pickup")
+			# decide whether its a upper object or lower object
+			if is_upper_handle.has_overlapping_bodies():
+				animation_handle.play("press")
+				
+			else:
+				animation_handle.speed_scale = 2
+				animation_handle.play("pickup")
+				print("pickup")
 			interacting = true
 		if pickup_thro_flip_flop == 2:
+			print(whats_in_hand_haldle)
 			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , could be null
 				interacting = true
 				animation_handle.speed_scale = 2
@@ -109,6 +117,6 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		print("finished drink")
 		interacting = false
 	if anim_name == "press":
-		
+		pickup_thro_flip_flop = 2
 		print("finished drink")
 		interacting = false

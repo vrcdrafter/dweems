@@ -15,7 +15,7 @@ func _on_area_entered(area):
 		viscinity = 1
 
 var door_can_open_now = false 
-
+# 
 func _ready():
 	player_handle = get_node("../../untitled/untitled/Armature (Mecha g)")
 	#print("player  Handle ",player_handle)

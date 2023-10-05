@@ -4,12 +4,14 @@ var item_array = ["One", 2, 3, "Four"]
 
 var item_handle
 var item_handle_group
+var item_handle_group_high
 @export var current_hand_item = RigidBody3D.new() # this is bas because 
 # Pacing When I want to access the node and get teh is_in_group it fails because its references a generic null 
 var hand_point_handle_1
 var hand_point_handle_2
 var hand_point_handle_3
 var collission_shape_handle
+var collission_shape_handle_high
 var target_angle_z
 var target_angle_x
 var target_angle_y
@@ -17,6 +19,8 @@ var target_angle_y
 var align_points_1
 var align_points_2
 var item_snapping = false
+var item_one_shot = false
+
 
 var destroy_item_bool = false
 # export the found item so the other nodes can make decisions on the items . 
@@ -54,17 +58,18 @@ func calc_angular_velocity(rigid_body_handle, hand_point_handle_1) -> Vector3:
 	return axis * angle * 22
 
 
-func pickup_item(): 
+func pickup_item(): # called during the pickup animaton 
 	
 	item_snapping = true
 	destroy_item_bool = false
-func pickup_throw(): 
+	item_one_shot = true
+func pickup_throw():  # called during the throw animation 
 	
 	item_snapping = false
-
+	item_one_shot = false
 func destroy_item():
 	destroy_item_bool = true
-	
+	item_one_shot = false
 	
 
 func _ready():
@@ -78,11 +83,16 @@ func _process(delta):
 	
 	
 	
-	if item_snapping and (item_handle_group.size() != 0):
+	if item_snapping and ((item_handle_group.size() != 0) or (item_handle_group_high.size() != 0)):
+		if item_one_shot:
+			if collission_shape_handle_high.has_overlapping_bodies():
+				current_hand_item = item_handle_group_high[0] # this fails if it finds nothing 
+				
+			elif collission_shape_handle.has_overlapping_bodies():
+				
+				current_hand_item = item_handle_group[0] # this fails if it finds nothing
+			item_one_shot = false
 		
-		current_hand_item = item_handle_group[0] # this fails if it finds nothing 
-		
-		item_handle = get_node("../../../../../coffee")
 		
 		hand_point_handle_1 = get_node("./origin")
 		
@@ -103,6 +113,11 @@ func _process(delta):
 	else:
 		collission_shape_handle = get_node("../../../Area3D")
 		item_handle_group = collission_shape_handle.get_overlapping_bodies()
+		
+		collission_shape_handle_high = get_node("../../../upper_pickup_box")
+		item_handle_group_high = collission_shape_handle_high.get_overlapping_bodies()
+		
+		print("overlapping bodies top ", collission_shape_handle_high.has_overlapping_bodies())
 		
 	
 	
