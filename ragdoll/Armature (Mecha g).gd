@@ -81,7 +81,8 @@ func _process(delta):
 				print("pickup")
 			interacting = true
 		if pickup_thro_flip_flop == 2:
-			print(whats_in_hand_haldle)
+			
+			print(is_instance_valid(whats_in_hand_haldle.current_hand_item))
 			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , could be null
 				interacting = true
 				animation_handle.speed_scale = 2
@@ -92,7 +93,7 @@ func _process(delta):
 				animation_handle.play("throw")
 	
 	if flag[8] == 1 and not is_jumping and not landed:
-		animation_handle.play("press")
+		animation_handle.play("press_2")
 		interacting = true
 		print("press")
 		emit_signal("open_interact")
@@ -117,6 +118,11 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		print("finished drink")
 		interacting = false
 	if anim_name == "press":
+		pickup_thro_flip_flop = 2
+		print("finished drink")
+		interacting = false
+		
+	if anim_name == "press_2":
 		pickup_thro_flip_flop = 2
 		print("finished drink")
 		interacting = false

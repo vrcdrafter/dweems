@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://o1cklxr0vrag"]
+
+[ext_resource type="PackedScene" uid="uid://ew6gbbiapnrh" path="res://ITEMS/milk.glb" id="1_5vf7n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2h3aj"]
+size = Vector3(0.28248, 0.684875, 0.236302)
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["food"]]
+collision_layer = 8
+collision_mask = 5
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.337063, 0)
+shape = SubResource("BoxShape3D_2h3aj")
+
+[node name="milk" parent="." instance=ExtResource("1_5vf7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.143081, 0.0120342, 0.130691)

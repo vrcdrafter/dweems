@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8ti0selmekbp"]
+
+[ext_resource type="PackedScene" uid="uid://sutfqpmvsf1u" path="res://ITEMS/juice.glb" id="1_d6yf3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2h3aj"]
+size = Vector3(0.3331, 0.684875, 0.236302)
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["food"]]
+collision_layer = 8
+collision_mask = 5
+continuous_cd = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.337063, 0)
+shape = SubResource("BoxShape3D_2h3aj")
+
+[node name="juice" parent="." instance=ExtResource("1_d6yf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000758365, 0.330656, 0.00560659)

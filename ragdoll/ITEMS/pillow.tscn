@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7h106y5e8s4n"]
+
+[ext_resource type="PackedScene" uid="uid://dbtdl075ta1uh" path="res://ITEMS/pillow_weasel.glb" id="1_xcrqh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_85413"]
+height = 0.296865
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["item"]]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.247466, 0)
+shape = SubResource("CylinderShape3D_85413")
+
+[node name="pillow_weasel" parent="." instance=ExtResource("1_xcrqh")]
