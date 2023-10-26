@@ -29,11 +29,13 @@ func _process(delta):
 	transform.basis = Basis(axis, spin_velocity) * transform.basis
 
 	# at end of process force animation_ready_jump = false 
-	anim_ready_jump = false
+	
 
 func jump_sig_custom():
 	print("custom jump _signal")
 	anim_ready_jump = true
+	await get_tree().create_timer(.1).timeout 
+	anim_ready_jump = false
 
 
 

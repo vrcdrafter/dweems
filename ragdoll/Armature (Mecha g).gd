@@ -65,7 +65,7 @@ func _process(delta):
 		walking_sound = false
 		
 	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
-		print("jump triggered ")
+		
 		animation_handle.speed_scale = 1
 		animation_handle.play("jump")
 		

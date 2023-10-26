@@ -56,6 +56,7 @@ func _physics_process(delta: float) -> void:
 		print("condition satisfied to jump")
 
 	if is_on_floor() and anim_ready_to_jump:
+		print("made to right before y up") # might never make it to here . 
 		velocity.y = jump_strength
 		_snap_vector = Vector3.ZERO
 	
