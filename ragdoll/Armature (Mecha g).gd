@@ -17,6 +17,9 @@ var is_upper_handle
 signal open_interact
 
 @export var pickup_thro_flip_flop = 1
+
+@export var walking_sound = true
+
 func _ready():
 	pass
 
@@ -30,8 +33,10 @@ func _process(delta):
 	is_upper_handle = get_node("../upper_pickup_box")
 	animation_track_handle = animation_handle.get_animation("idle")
 	
+	
 	item_in_hand = whats_in_hand_haldle.current_hand_item
 	
+	walking_sound = true
 	
 	if flag[3] == 1 and not is_jumping and not landed and not interacting:
 		animation_handle.speed_scale = 1
@@ -49,6 +54,7 @@ func _process(delta):
 			animation_handle.speed_scale = 1
 			animation_handle.play("jump")
 			is_jumping = true
+			walking_sound = false
 		else:
 			animation_handle.speed_scale = 1
 			animation_handle.play("walk")
@@ -56,20 +62,25 @@ func _process(delta):
 		animation_handle.speed_scale = 1
 		animation_handle.play("idle")
 		is_jumping = false
+		walking_sound = false
 		
 	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
 		print("jump triggered ")
 		animation_handle.speed_scale = 1
 		animation_handle.play("jump")
+		
 		is_jumping = true
+		walking_sound = false
 	elif landed: # might be triggering before floor
 		print("should be landing")
 		animation_handle.speed_scale = 1
 		animation_handle.play("land")
 		is_jumping = false
+		walking_sound = false
 
 # begin routine for aux animations 
 	if flag[6] == 1 and not is_jumping and not landed:
+		walking_sound = false
 		if pickup_thro_flip_flop == 1:
 			# decide whether its a upper object or lower object
 			if is_upper_handle.has_overlapping_bodies():
@@ -91,8 +102,9 @@ func _process(delta):
 				interacting = true
 				animation_handle.speed_scale = 2
 				animation_handle.play("throw")
-	
+				
 	if flag[8] == 1 and not is_jumping and not landed:
+		walking_sound = false
 		animation_handle.play("press_2")
 		interacting = true
 		print("press")
@@ -126,3 +138,16 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		pickup_thro_flip_flop = 2
 		print("finished drink")
 		interacting = false
+
+
+
+func gimme_speech_bub(text_to_say):
+	var scene = preload("res://animations/text_bubble.tscn")
+	
+	var newCrop = scene.instantiate() #creates a new node
+	newCrop.text = "hello this is cool \n no like really cool "
+	get_parent().add_child(newCrop) #this adds the new crop as a child of the current node
+	
+	
+	print("child found ", find_child("*"))
+	get_instance_id()

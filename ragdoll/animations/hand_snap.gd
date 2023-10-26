@@ -117,7 +117,7 @@ func _process(delta):
 		collission_shape_handle_high = get_node("../../../upper_pickup_box")
 		item_handle_group_high = collission_shape_handle_high.get_overlapping_bodies()
 		
-		print("overlapping bodies top ", collission_shape_handle_high.has_overlapping_bodies())
+		#print("overlapping bodies top ", collission_shape_handle_high.has_overlapping_bodies())
 		
 	
 	

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://crrukvtu3fmt5"]
+
+[ext_resource type="PackedScene" uid="uid://div4cectqyvi7" path="res://ITEMS/fridge_animated.glb" id="1_78ipl"]
+
+[node name="fridge_animated" instance=ExtResource("1_78ipl")]

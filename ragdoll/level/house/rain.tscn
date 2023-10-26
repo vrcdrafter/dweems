@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4itk2r2tkmh6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rlr8t"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+direction = Vector3(0, -1, 0)
+spread = 2.0
+gravity = Vector3(0, -9.81, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+color = Color(0.27451, 0.317647, 0.396078, 1)
+
+[sub_resource type="Curve" id="Curve_foi28"]
+min_value = 0.09
+max_value = 0.1
+_data = [Vector2(0, 0.09), 0.0, 0.0499998, 0, 0, Vector2(0.2, 0.096), 0.03, 0.03, 0, 0, Vector2(1, 0.09), -0.0399998, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8u1d"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_0nqe4"]
+material = SubResource("StandardMaterial3D_q8u1d")
+curve = SubResource("Curve_foi28")
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.355835, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22954, 0)
+amount = 200
+lifetime = 1.67
+speed_scale = 2.0
+randomness = 0.58
+visibility_aabb = AABB(-10, -4, -10, 20, 8, 20)
+trail_enabled = true
+trail_lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_rlr8t")
+draw_pass_1 = SubResource("RibbonTrailMesh_0nqe4")

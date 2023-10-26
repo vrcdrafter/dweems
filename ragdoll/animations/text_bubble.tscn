@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn66k2w7sslxk"]
+
+[ext_resource type="Script" path="res://text_bubble.gd" id="1_a3t4p"]
+[ext_resource type="Texture2D" uid="uid://bbc4ubxkocmgn" path="res://textures/speech_bubble.png" id="2_dr3nu"]
+[ext_resource type="FontFile" uid="uid://vqtjgprla8wl" path="res://textures/NightPumpkind-nRORO.otf" id="3_k3ccq"]
+
+[sub_resource type="SystemFont" id="SystemFont_5l07t"]
+font_names = PackedStringArray("Calibri")
+fallbacks = Array[Font]([ExtResource("3_k3ccq")])
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_a3t4p")
+
+[node name="wrapper" type="Node3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="wrapper"]
+root_node = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="wrapper"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+layers = 2
+sorting_offset = 30.0
+offset = Vector2(-20, 20)
+billboard = 1
+alpha_cut = 1
+texture = ExtResource("2_dr3nu")
+
+[node name="Label3D" type="Label3D" parent="wrapper/Sprite3D"]
+transform = Transform3D(0.045832, 0, 0, 0, 0.101386, 0, 0, 0, 0.101386, 0, 0, 0)
+layers = 2
+sorting_offset = -30.0
+offset = Vector2(-1400, 560)
+billboard = 1
+no_depth_test = true
+modulate = Color(0, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "This is a text
+"
+font = SubResource("SystemFont_5l07t")
+font_size = 80
+horizontal_alignment = 0
+vertical_alignment = 0
+
+[node name="Node3D" type="Node3D" parent="wrapper"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
