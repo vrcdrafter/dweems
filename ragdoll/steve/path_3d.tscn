@@ -1,0 +1,176 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct4llv1b2h03l"]
+
+[ext_resource type="ArrayMesh" uid="uid://bs8k5sw834o05" path="res://steve/orient_cube.tres" id="1_ctv6y"]
+
+[sub_resource type="Curve3D" id="Curve3D_23hfo"]
+bake_interval = 15.01
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.620493, 1.6294, 34.715, 0, 0, 0, 0, 0, 0, 2.33093, 1.39798, 31.0698, 0, 0, 0, 0, 0, 0, 4.20228, 1.40906, 29.5967, 0, 0, 0, 0, 0, 0, 2.60237, 1.34966, 27.0714, 0, 0, 0, 0, 0, 0, 1.34785, 1.26379, 26.5836, 0, 0, 0, 0, 0, 0, 1.13114, 1.23789, 25.9826, 0, 0, 0, 0, 0, 0, 0.485109, 0.999063, 23.6086),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+up_vector_enabled = false
+
+[node name="Path3D" type="Path3D"]
+curve = SubResource("Curve3D_23hfo")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905289, 0.0243739, 0.424088, -9.31319e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+
+[node name="PathFollow3D2" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.024374, 0.42409, -9.31321e-10, 0.998352, -0.0573789, -0.424789, -0.0519446, -0.9038, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D2"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D3" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905292, 0.024374, 0.424089, -9.31323e-10, 0.998352, -0.0573787, -0.42479, -0.0519446, -0.903797, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D3"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D4" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905292, 0.024374, 0.424089, -9.31323e-10, 0.998352, -0.0573787, -0.42479, -0.0519446, -0.903797, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D4"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D5" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D5"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D6" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D6"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D7" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D7"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D8" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D8"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D9" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D9"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D10" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D10"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D11" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D11"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D12" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D12"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D13" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D13"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D14" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D14"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D15" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D15"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D16" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D16"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D17" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D17"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")
+
+[node name="PathFollow3D18" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
+loop = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D18"]
+transform = Transform3D(-0.0432926, 0.0981105, -0.385357, 0.397393, 0.0246074, -0.0383799, 0.0142929, -0.387, -0.100134, 0, 0, 0)
+mesh = ExtResource("1_ctv6y")
+skeleton = NodePath("../../..")

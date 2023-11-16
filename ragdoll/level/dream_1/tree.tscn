@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnu5fw4si21w5"]
+
+[ext_resource type="PackedScene" uid="uid://br4y5dysokqfe" path="res://level/dream_1/tree.glb" id="1_gqkyx"]
+[ext_resource type="Material" uid="uid://du0htep3rtx57" path="res://level/dream_1/tree_2.tres" id="2_gjnvb"]
+[ext_resource type="Texture2D" uid="uid://cuinj450lirvv" path="res://level/dream_1/forest_Trank_baseColor.png" id="3_outss"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36r55"]
+albedo_texture = ExtResource("3_outss")
+
+[node name="tree" instance=ExtResource("1_gqkyx")]
+
+[node name="mesh_1004" parent="." index="0"]
+transform = Transform3D(0.297975, 0, 0, 0, 0.297975, 0, 0, 0, 0.297975, 0, 0, 0)
+surface_material_override/0 = ExtResource("2_gjnvb")
+surface_material_override/1 = SubResource("StandardMaterial3D_36r55")
+surface_material_override/2 = ExtResource("2_gjnvb")

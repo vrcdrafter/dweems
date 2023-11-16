@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cs16kcnm8o7ha"]
+
+[ext_resource type="Texture2D" uid="uid://bi74hyner522h" path="res://level/dream_1/textures/Leavs_baseColor.png" id="1_yqf0o"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_yqf0o")
