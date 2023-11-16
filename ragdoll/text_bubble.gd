@@ -34,8 +34,12 @@ func _ready():
 		$AudioStreamPlayer.play()
 		await get_tree().create_timer(.1).timeout
 		i = i + 1
-		
 	
+	# closer timer
+	await get_tree().create_timer(1).timeout
+	var tween_close = get_tree().create_tween()
+	tween_close.tween_property($wrapper, "scale", Vector3(.1,.1,.1),1.5).set_trans(Tween.TRANS_ELASTIC)
+	tween_close.connect("finished",on_tween_finished)
 	
 	
 func make_array(my_string):
@@ -47,3 +51,8 @@ func make_array(my_string):
 
 func _on_audio_stream_player_finished():
 	cont = true
+	
+func on_tween_finished():
+	self.queue_free()
+	
+

@@ -25,6 +25,11 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	
+	# check for closing the program 
+	if Input.is_action_pressed("key_exit"):
+		get_tree().quit()
+	
+	
 	# pull the ineract handle 
 	interact_script_handle = get_node("./untitled/Armature (Mecha g)")
 	
