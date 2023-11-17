@@ -60,6 +60,7 @@ var curve_array_point = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var curve_array_in = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var curve_array_out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var ensnared = false
+var time = 1.1 # for bobing head
 
 func _ready():
 	var Snake_skeleton = get_node("steve2")
@@ -100,6 +101,8 @@ func _ready():
 
 
 func _physics_process(delta): 
+	
+
 	
 	get_tree().call_group("enemies","update_target_location",player.global_transform.origin)
 	
@@ -167,6 +170,12 @@ func _physics_process(delta):
 		path_handle_16.progress += 0
 		path_handle_17.progress += 0
 		path_handle_18.progress += 0
+		
+		
+		# try to bob head 
+		
+		time += delta # you need this
+		$Path3D/PathFollow3D18.v_offset = wave(.1,1,time,delta)
 		
 		# then populate new points coming from players curve 
 		var i = 0
@@ -277,3 +286,13 @@ func move_point(point:Vector3,object:Node3D):
 	
 	
 	return new_point_rot
+
+
+func wave(amplitude:float, freq:int, time:float, delta):
+		
+		freq = 1
+		amplitude = .1
+		var variation 
+		variation = sin(time * freq) * amplitude
+		return variation
+	
