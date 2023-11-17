@@ -139,7 +139,7 @@ func _physics_process(delta):
 		curve_array_in[x] = $untitled/Path3D.curve.get_point_in(x)
 	for x in range(0, curve_array_out.size()):
 		curve_array_out[x] = $untitled/Path3D.curve.get_point_out(x)
-	print("array of points in curve ", curve_array_point)
+	#print("array of points in curve ", curve_array_point)
 	
 	
 	# rotate players Path3 to face snake  
