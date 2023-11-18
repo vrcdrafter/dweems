@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var nav_agent = $NavigationAgent3D
 var angle_3d = Vector3(0,0,0)
 
-var speed = 5
+var speed = 8
 var old_velocty = Vector3(0,0,0)
 
 @export var new_velocity = Vector3(0,0,0)

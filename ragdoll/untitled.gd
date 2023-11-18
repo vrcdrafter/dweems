@@ -16,7 +16,8 @@ var anim_ready_to_jump:bool = false
 var collission_shape_handle
 var collission_shape_handle_upper
 var interact_script_handle 
-
+var snake_handle
+var no_movement = false
 var interacting = false
 
 func _ready():
@@ -24,6 +25,10 @@ func _ready():
 	timer.animation_finished.connect(_on_animation_player_animation_finished)
 
 func _physics_process(delta: float) -> void:
+	snake_handle = get_node("..")
+	# signal for ensnared ( from steve )
+	snake_handle.ensnared_status.connect(hold_all_motion.bind())	
+	
 	
 	# check for closing the program 
 	if Input.is_action_pressed("key_exit"):
@@ -43,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	handle_anim_ready_to_jump = get_node("untitled")
 	anim_ready_to_jump = handle_anim_ready_to_jump.anim_ready_jump
 	# end pull in jump data 
-	if not interacting:
+	if not interacting and not no_movement:
 	
 		var move_direction := Vector3.ZERO
 		move_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -99,7 +104,7 @@ func _physics_process(delta: float) -> void:
 	# begin flag setting for export animaiton 
 	# only do movement if your not interacting 
 	
-	if not interacting: # to make sure the character does not move  
+	if not interacting and not no_movement: # to make sure the character does not move  
 		if Input.get_action_strength("right") > 0 and is_on_floor():
 			
 			animation_flags[0] = 0
@@ -147,7 +152,9 @@ func _physics_process(delta: float) -> void:
 			animation_flags[3] = 0
 			animation_flags[4] = 0
 			animation_flags[5] = 0
-
+	if no_movement: # for wierd edge case when snake finds you d
+		velocity.x = 0
+		velocity.z = 0
 	# end flag setting for export animation . 
 	#reset jump anim var so its ready for next jump 
 	anim_ready_to_jump = false
@@ -189,3 +196,7 @@ func _on_animation_player_animation_started(anim_name):
 	if anim_name == "press":
 		
 		interacting = true
+
+func hold_all_motion():
+	print("dont move , least try not to move ")
+	no_movement = true

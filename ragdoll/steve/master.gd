@@ -26,7 +26,7 @@ extends Node3D
 var bone_speed = 3.0
 var length = 0.0
 @onready var heading_handle =$steve  # note steve needs to be close to the player immediatly . and have no clipping ------- >>>>>> ERROR OR IMPROVEMENT
-
+var speed = 1.0
 var pos_1 
 var pos_2
 var pos_3
@@ -61,6 +61,7 @@ var curve_array_in = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var curve_array_out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var ensnared = false
 var time = 1.1 # for bobing head
+signal ensnared_status
 
 func _ready():
 	var Snake_skeleton = get_node("steve2")
@@ -150,6 +151,7 @@ func _physics_process(delta):
 	
 	
 	# stop routing
+	
 	if path_handle_18.get_progress() > line.curve.get_baked_length():
 		print("stop please")
 		path_handle_1.progress += 0
@@ -185,30 +187,36 @@ func _physics_process(delta):
 			var curve_point_in = move_point(curve_array_point[i],$untitled/Path3D)
 			var curve_point_out = move_point(curve_array_point[i],$untitled/Path3D)
 			line.curve.add_point(curve_point_pos,Vector3(0,0,0),Vector3(0,0,0),num_of_points_at_moment + 1)
-			print("new first point",curve_point_pos)
+			#print("new first point",curve_point_pos)
 			i += 1
 			
 		ensnared = true
+		emit_signal("ensnared_status")
 			
 	else:
-		path_handle_1.progress += 3 * delta
-		path_handle_2.progress += 3 * delta
-		path_handle_3.progress += 3 * delta
-		path_handle_4.progress += 3 * delta
-		path_handle_5.progress += 3 * delta
-		path_handle_6.progress += 3 * delta
-		path_handle_7.progress += 3 * delta
-		path_handle_8.progress += 3 * delta
-		path_handle_9.progress += 3 * delta
-		path_handle_10.progress += 3 * delta
-		path_handle_11.progress += 3 * delta
-		path_handle_12.progress += 3 * delta
-		path_handle_13.progress += 3 * delta
-		path_handle_14.progress += 3 * delta
-		path_handle_15.progress += 3 * delta
-		path_handle_16.progress += 3 * delta
-		path_handle_17.progress += 3 * delta
-		path_handle_18.progress += 3 * delta
+		
+		speed += .01
+		clamp(speed,0,6)
+		print(speed)
+		
+		path_handle_1.progress += speed * delta
+		path_handle_2.progress += speed * delta
+		path_handle_3.progress += speed * delta
+		path_handle_4.progress += speed * delta
+		path_handle_5.progress += speed * delta
+		path_handle_6.progress += speed * delta
+		path_handle_7.progress += speed * delta
+		path_handle_8.progress += speed * delta
+		path_handle_9.progress += speed * delta
+		path_handle_10.progress += speed * delta
+		path_handle_11.progress += speed * delta
+		path_handle_12.progress += speed * delta
+		path_handle_13.progress += speed * delta
+		path_handle_14.progress += speed * delta
+		path_handle_15.progress += speed * delta
+		path_handle_16.progress += speed * delta
+		path_handle_17.progress += speed * delta
+		path_handle_18.progress += speed * delta
 
 # get the head to snake to handle 1 
 
