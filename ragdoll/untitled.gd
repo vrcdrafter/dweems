@@ -27,7 +27,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	snake_handle = get_node("..")
 	# signal for ensnared ( from steve )
-	snake_handle.ensnared_status.connect(hold_all_motion.bind())	
+	if has_node("../steve"):
+		snake_handle.ensnared_status.connect(hold_all_motion.bind())	
 	
 	
 	# check for closing the program 
