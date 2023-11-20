@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl41y1rq03gpg"]
+
+[ext_resource type="Script" path="res://bed_changer_house_scene.gd" id="1_rkuy7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krc2m"]
+size = Vector3(3.78434, 1, 1.44255)
+
+[node name="bed_changer" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.87786, 0, -10.3171)
+script = ExtResource("1_rkuy7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_krc2m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

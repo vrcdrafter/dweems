@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Ragdoll"
-run/main_scene="res://house_scene.tscn"
+run/main_scene="res://world/world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+LoadManager="*res://autoloads/load_manager.gd"
 
 [editor_plugins]
 
