@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5vke7uvypy5y"]
+
+[ext_resource type="Script" path="res://snake_speech.gd" id="1_jc04k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgqmg"]
+size = Vector3(1.53046, 2.13186, 3.29516)
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_jc04k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055, 0, 0)
+shape = SubResource("BoxShape3D_lgqmg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

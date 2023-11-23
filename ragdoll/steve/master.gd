@@ -105,7 +105,7 @@ func _ready():
 func _physics_process(delta): 
 	
 
-	var snake_target = player # what the snake is seeking . 
+	var snake_target = pedistal # what the snake is seeking . 
 	
 	#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 	get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal

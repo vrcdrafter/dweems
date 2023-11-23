@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rn252bghw5p0"]
+
+[ext_resource type="Curve3D" uid="uid://crvnr6ycidjg8" path="res://steve/ensnarement_path.tres" id="1_yt6wv"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i3tlo"]
+
+[node name="resting_space" type="Node3D" groups=["location"]]
+
+[node name="resting_pedistal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.550072, 0, 0, 0, 1, 0, -0.570068, 0)
+mesh = SubResource("CylinderMesh_i3tlo")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = ExtResource("1_yt6wv")
