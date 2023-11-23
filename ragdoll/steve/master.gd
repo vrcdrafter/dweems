@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var player = $untitled
+@onready var pedistal = $resting_space
 @onready var line = $Path3D
 @onready var Snake_skeleton = get_node("steve2/Armature/Skeleton3D")
 @onready var path_handle_1 = get_node("Path3D/" + "PathFollow3D")
@@ -104,9 +105,10 @@ func _ready():
 func _physics_process(delta): 
 	
 
+	var snake_target = player # what the snake is seeking . 
 	
-	get_tree().call_group("enemies","update_target_location",player.global_transform.origin)
-	
+	#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
+	get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
 
 	# get inial point count 
 	var num_of_points = line.curve.point_count
@@ -138,16 +140,16 @@ func _physics_process(delta):
 	
 	# test for all other points 
 	for x in range(0, curve_array_point.size()):
-		curve_array_point[x] = $untitled/Path3D.curve.get_point_position(x)
+		curve_array_point[x] = snake_target.get_node("Path3D").curve.get_point_position(x)
 	for x in range(0, curve_array_in.size()):
-		curve_array_in[x] = $untitled/Path3D.curve.get_point_in(x)
+		curve_array_in[x] = snake_target.get_node("Path3D").curve.get_point_in(x)
 	for x in range(0, curve_array_out.size()):
-		curve_array_out[x] = $untitled/Path3D.curve.get_point_out(x)
+		curve_array_out[x] = snake_target.get_node("Path3D").curve.get_point_out(x)
 	#print("array of points in curve ", curve_array_point)
 	
 	
 	# rotate players Path3 to face snake  
-	$untitled/Path3D.look_at($Path3D/PathFollow3D18/MeshInstance3D.global_position,Vector3(0,1,0)) # need to get the real position of the cube , 
+	snake_target.get_node("Path3D").look_at($Path3D/PathFollow3D18/MeshInstance3D.global_position,Vector3(0,1,0)) # need to get the real position of the cube , 
 	
 	
 	# stop routing
@@ -178,21 +180,25 @@ func _physics_process(delta):
 		
 		time += delta # you need this
 		$Path3D/PathFollow3D18.v_offset = wave(.1,1,time,delta)
+		$Path3D/PathFollow3D17.v_offset = wave(.1,1,time,delta)
+		$Path3D/PathFollow3D16.v_offset = wave(.1,1,time,delta)
+		$Path3D/PathFollow3D15.v_offset = wave(.1,1,time,delta)
 		
 		# then populate new points coming from players curve 
 		var i = 0
 		while (i < 16) and not ensnared:
 			var num_of_points_at_moment = line.curve.point_count
-			var curve_point_pos = move_point(curve_array_point[i],$untitled/Path3D)
-			var curve_point_in = move_point(curve_array_point[i],$untitled/Path3D)
-			var curve_point_out = move_point(curve_array_point[i],$untitled/Path3D)
+			var curve_point_pos = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
+			var curve_point_in = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
+			var curve_point_out = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 			line.curve.add_point(curve_point_pos,Vector3(0,0,0),Vector3(0,0,0),num_of_points_at_moment + 1)
 			#print("new first point",curve_point_pos)
 			i += 1
 			
 		ensnared = true
-		emit_signal("ensnared_status")
-			
+		if snake_target.is_in_group("player_to_stop"):
+			emit_signal("ensnared_status")
+		
 	else:
 		
 		speed += .01
