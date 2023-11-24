@@ -149,7 +149,8 @@ func _physics_process(delta):
 	
 	
 	# rotate players Path3 to face snake  
-	snake_target.get_node("Path3D").look_at($Path3D/PathFollow3D18/MeshInstance3D.global_position,Vector3(0,1,0)) # need to get the real position of the cube , 
+	if snake_target.is_in_group("player_to_stop"):
+		snake_target.get_node("Path3D").look_at($Path3D/PathFollow3D18/MeshInstance3D.global_position,Vector3(0,1,0)) # need to get the real position of the cube , 
 	
 	
 	# stop routing
@@ -188,6 +189,10 @@ func _physics_process(delta):
 		var i = 0
 		while (i < 16) and not ensnared:
 			var num_of_points_at_moment = line.curve.point_count
+			if snake_target.is_in_group("location"): # run with no translation 
+				var curve_point_pos = curve_array_point[i]
+				var curve_point_in = curve_array_point[i]
+				var curve_point_out = curve_array_point[i]
 			var curve_point_pos = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 			var curve_point_in = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 			var curve_point_out = move_point(curve_array_point[i],snake_target.get_node("Path3D"))

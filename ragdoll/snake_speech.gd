@@ -1,7 +1,7 @@
 extends Area3D
 
-var text_new = "probably should \n turn off the TV"
-var target_node = "../steve"  # just do a path as a string
+var text_new = "Hello welcome to your dream \n will you help me find \n my HATS"
+var target_node = "../Path3D/PathFollow3D18"  # just do a path as a string
 
 func _on_body_entered(body):
 	gimme_speech_bub(text_new)
