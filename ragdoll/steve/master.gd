@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var player = $untitled
 @onready var pedistal = $resting_space
+var snake_target
 @onready var line = $Path3D
 @onready var Snake_skeleton = get_node("steve2/Armature/Skeleton3D")
 @onready var path_handle_1 = get_node("Path3D/" + "PathFollow3D")
@@ -63,6 +64,8 @@ var curve_array_out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var ensnared = false
 var time = 1.1 # for bobing head
 signal ensnared_status
+var lenght_proxy = 1.0   # this is the lenght of the path which we fake sometimes to prompto the snake to retarget
+
 
 func _ready():
 	var Snake_skeleton = get_node("steve2")
@@ -72,7 +75,7 @@ func _ready():
 	var missing_model_material := StandardMaterial3D.new()
 	missing_model_material.flags_unshaded = true
 	missing_model_material.albedo_color = Color(255, 0, 255)
-	
+	snake_target = pedistal # what the snake is seeking .  initially
 	
 	path_handle_1.progress = 2.0
 	path_handle_2.progress = 2.5
@@ -105,7 +108,7 @@ func _ready():
 func _physics_process(delta): 
 	
 
-	var snake_target = pedistal # what the snake is seeking . 
+	
 	
 	#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 	get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
@@ -154,8 +157,8 @@ func _physics_process(delta):
 	
 	
 	# stop routing
-	
-	if path_handle_18.get_progress() > line.curve.get_baked_length():
+	print("progress",path_handle_18.get_progress(),"lenght ",lenght_proxy)
+	if path_handle_18.get_progress() > lenght_proxy:
 		print("stop please")
 		path_handle_1.progress += 0
 		path_handle_2.progress += 0
@@ -187,7 +190,7 @@ func _physics_process(delta):
 		
 		# then populate new points coming from players curve 
 		var i = 0
-		while (i < 16) and not ensnared:
+		while (i < 16) and not ensnared: # problem occurs here , this runs the moment 
 			var num_of_points_at_moment = line.curve.point_count
 			if snake_target.is_in_group("location"): # run with no translation 
 				var curve_point_pos = curve_array_point[i]
@@ -200,15 +203,15 @@ func _physics_process(delta):
 			#print("new first point",curve_point_pos)
 			i += 1
 			
-		ensnared = true
+		ensnared = true # this causes a problem
+		
 		if snake_target.is_in_group("player_to_stop"):
 			emit_signal("ensnared_status")
-		
+		speed = 1.0
 	else:
 		
-		speed += .01
-		clamp(speed,0,6)
-		print(speed)
+		speed += .01 # rampup for snake's speed. 
+	
 		
 		path_handle_1.progress += speed * delta
 		path_handle_2.progress += speed * delta
@@ -228,7 +231,7 @@ func _physics_process(delta):
 		path_handle_16.progress += speed * delta
 		path_handle_17.progress += speed * delta
 		path_handle_18.progress += speed * delta
-
+	lenght_proxy = line.curve.get_baked_length() # update the curve lenght 
 # get the head to snake to handle 1 
 
 	#Snake_skeleton.set_bone_pose_position(0,$Path3D/PathFollow3D7/MeshInstance3D.get_global_position()) # almost works
@@ -315,3 +318,18 @@ func wave(amplitude:float, freq:int, time:float, delta):
 		variation = sin(time * freq) * amplitude
 		return variation
 	
+
+
+func _on_chase_region_body_entered(body):
+	if body.is_in_group("player_to_stop"):
+		#print(" should see player")
+		
+		summation_distance += 1 # jump start the distance . 
+		lenght_proxy += 1
+		snake_target = player # add headstart 
+		
+		ensnared = false # should send snake on its way . 
+		
+		
+		
+		
