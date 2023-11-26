@@ -12,6 +12,7 @@ func gimme_speech_bub(text_to_say):
 	var scene = preload("res://animations/text_bubble.tscn")
 	
 	var new_dialogue = scene.instantiate() #creates a new node
+	new_dialogue.text_box_theme = "res://textures/speech_bubble_snake.png"
 	new_dialogue.text = text_to_say
 	
 	get_node(target_node).add_child(new_dialogue) 

@@ -64,8 +64,11 @@ var curve_array_out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var ensnared = false
 var time = 1.1 # for bobing head
 signal ensnared_status
+signal free_to_go
 var lenght_proxy = 1.0   # this is the lenght of the path which we fake sometimes to prompto the snake to retarget
-
+var sequence = 0 # used to control when the snake has stopped moving 
+var done_moving_oneshot = false
+var lenght_exception = false
 
 func _ready():
 	var Snake_skeleton = get_node("steve2")
@@ -129,9 +132,10 @@ func _physics_process(delta):
 	summation_distance += abs(pos_2.length() - pos_1.length())
 	
 	#print("total traveled distnace", summation_distance)
-	
+	print("summation distance ", summation_distance, "ensnared ", ensnared)
 	if summation_distance > .1 and not ensnared:
-		# need to add a new path3d and PathFollow 3d 
+		print("dropping points ")
+		sequence = 1
 		line.curve.add_point(pos_2,(pos_2-pos_3)*2,(pos_1-pos_2)*2,num_of_points + 1) # successfully adds a point
 
 		summation_distance = 0 
@@ -157,9 +161,21 @@ func _physics_process(delta):
 	
 	
 	# stop routing
-	print("progress",path_handle_18.get_progress(),"lenght ",lenght_proxy)
+
 	if path_handle_18.get_progress() > lenght_proxy:
-		print("stop please")
+		sequence += 1
+		
+		sequence = clamp(sequence,0,3)
+		if sequence == 3 and snake_target == player:
+			print(" shold go to pedistal now ")
+			ensnared = false 
+			snake_target = pedistal
+			summation_distance += 1 # jump start the distance . 
+			lenght_proxy += 1 # this is a problem , it will go back into this loop again if ------>
+			emit_signal("free_to_go")
+			sequence = 1
+			lenght_exception = true
+			
 		path_handle_1.progress += 0
 		path_handle_2.progress += 0
 		path_handle_3.progress += 0
@@ -199,14 +215,20 @@ func _physics_process(delta):
 			var curve_point_pos = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 			var curve_point_in = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 			var curve_point_out = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
-			line.curve.add_point(curve_point_pos,Vector3(0,0,0),Vector3(0,0,0),num_of_points_at_moment + 1)
+			if sequence != 1: # if you dont have this then it will drop a point back at the pedistal right after ensaring the player 
+				line.curve.add_point(curve_point_pos,Vector3(0,0,0),Vector3(0,0,0),num_of_points_at_moment + 1)
 			#print("new first point",curve_point_pos)
-			i += 1
 			
-		ensnared = true # this causes a problem
+			i += 1
+		print("sqeuence at moment", sequence)
+		if sequence != 1: # need to have this so that it drops points when it moves to the next target
+			ensnared = true # this causes a problem
 		
-		if snake_target.is_in_group("player_to_stop"):
+		if snake_target.is_in_group("player_to_stop") and sequence != 3: # remember sequence 3 is traveling snake , you cant be ensnared when travling
 			emit_signal("ensnared_status")
+			# move player back to beginning 
+			# move snake back to benining 
+			
 		speed = 1.0
 	else:
 		
@@ -231,7 +253,9 @@ func _physics_process(delta):
 		path_handle_16.progress += speed * delta
 		path_handle_17.progress += speed * delta
 		path_handle_18.progress += speed * delta
-	lenght_proxy = line.curve.get_baked_length() # update the curve lenght 
+	if not lenght_exception:
+		lenght_proxy = line.curve.get_baked_length() # update the curve lenght 
+	lenght_exception = false
 # get the head to snake to handle 1 
 
 	#Snake_skeleton.set_bone_pose_position(0,$Path3D/PathFollow3D7/MeshInstance3D.get_global_position()) # almost works
@@ -327,7 +351,7 @@ func _on_chase_region_body_entered(body):
 		summation_distance += 1 # jump start the distance . 
 		lenght_proxy += 1
 		snake_target = player # add headstart 
-		
+		sequence = 1
 		ensnared = false # should send snake on its way . 
 		
 		

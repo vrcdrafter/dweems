@@ -7,10 +7,16 @@ var arr_size
 var bib_high = load("res://sounds/bib_hight.wav")
 var bib_low = load("res://sounds/bib_low.wav")
 @export var text = "null"
-
+@export var text_box_theme:String = "res://textures/speech_bubble.png"
 var cont = false
 
 func _ready():
+	
+	# options to set up sprite 
+	var text_1 = load(text_box_theme)
+	
+	$wrapper/Sprite3D.texture = text_1
+	
 	
 	var tween = get_tree().create_tween()
 	

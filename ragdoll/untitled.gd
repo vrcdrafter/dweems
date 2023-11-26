@@ -29,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	# signal for ensnared ( from steve )
 	if has_node("../steve"):
 		snake_handle.ensnared_status.connect(hold_all_motion.bind())
+		snake_handle.free_to_go.connect(resume_all_motion.bind())
 	
 	
 	# check for closing the program 
@@ -201,3 +202,6 @@ func _on_animation_player_animation_started(anim_name):
 func hold_all_motion():
 	print("dont move , least try not to move ")
 	no_movement = true
+func resume_all_motion():
+	print("resume motion  ")
+	no_movement = false
