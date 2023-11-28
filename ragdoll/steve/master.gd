@@ -132,9 +132,9 @@ func _physics_process(delta):
 	summation_distance += abs(pos_2.length() - pos_1.length())
 	
 	#print("total traveled distnace", summation_distance)
-	print("summation distance ", summation_distance, "ensnared ", ensnared)
+	#print("summation distance ", summation_distance, "ensnared ", ensnared)
 	if summation_distance > .1 and not ensnared:
-		print("dropping points ")
+		
 		sequence = 1
 		line.curve.add_point(pos_2,(pos_2-pos_3)*2,(pos_1-pos_2)*2,num_of_points + 1) # successfully adds a point
 
@@ -220,7 +220,7 @@ func _physics_process(delta):
 			#print("new first point",curve_point_pos)
 			
 			i += 1
-		print("sqeuence at moment", sequence)
+		
 		if sequence != 1: # need to have this so that it drops points when it moves to the next target
 			ensnared = true # this causes a problem
 		

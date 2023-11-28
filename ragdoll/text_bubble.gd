@@ -9,6 +9,7 @@ var bib_low = load("res://sounds/bib_low.wav")
 @export var text = "null"
 @export var text_box_theme:String = "res://textures/speech_bubble.png"
 var cont = false
+@onready var tween = get_tree().create_tween()
 
 func _ready():
 	
@@ -18,9 +19,9 @@ func _ready():
 	$wrapper/Sprite3D.texture = text_1
 	
 	
-	var tween = get_tree().create_tween()
+
 	
-	tween.tween_property($wrapper, "scale", Vector3(.7,.7,.7),1.5).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($wrapper, "scale", Vector3(.7,.7,.7),.5).set_trans(Tween.TRANS_ELASTIC)
 	#tween.tween_callback($Sprite.queue_free)
 	await get_tree().create_timer(1).timeout
 	arr_new = make_array(text)
@@ -38,11 +39,11 @@ func _ready():
 		else:
 			$AudioStreamPlayer.set_stream(bib_high)
 		$AudioStreamPlayer.play()
-		await get_tree().create_timer(.1).timeout
+		await get_tree().create_timer(.01).timeout
 		i = i + 1
 	
 	# closer timer
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(4).timeout
 	var tween_close = get_tree().create_tween()
 	tween_close.tween_property($wrapper, "scale", Vector3(.1,.1,.1),1.5).set_trans(Tween.TRANS_ELASTIC)
 	tween_close.connect("finished",on_tween_finished)

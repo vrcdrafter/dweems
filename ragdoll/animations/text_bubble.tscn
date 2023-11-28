@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn66k2w7sslxk"]
+[gd_scene load_steps=6 format=3 uid="uid://bn66k2w7sslxk"]
 
 [ext_resource type="Script" path="res://text_bubble.gd" id="1_a3t4p"]
 [ext_resource type="Texture2D" uid="uid://bbc4ubxkocmgn" path="res://textures/speech_bubble.png" id="2_dr3nu"]
 [ext_resource type="FontFile" uid="uid://vqtjgprla8wl" path="res://textures/NightPumpkind-nRORO.otf" id="3_k3ccq"]
+[ext_resource type="AudioStream" uid="uid://cg3fixa5dtkhf" path="res://sounds/bib_hight.wav" id="4_amjwq"]
 
 [sub_resource type="SystemFont" id="SystemFont_5l07t"]
 font_names = PackedStringArray("Calibri")
@@ -45,5 +46,7 @@ vertical_alignment = 0
 [node name="Node3D" type="Node3D" parent="wrapper"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_amjwq")
+volume_db = -10.0
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
