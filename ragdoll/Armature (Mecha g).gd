@@ -11,9 +11,9 @@ var landed
 var interacting  = false
 var is_in_air
 var is_jumping = false
-
+var no_movement = false
 var is_upper_handle
-
+var snake_handle
 signal open_interact
 
 @export var pickup_thro_flip_flop = 1
@@ -33,82 +33,90 @@ func _process(delta):
 	is_upper_handle = get_node("../upper_pickup_box")
 	animation_track_handle = animation_handle.get_animation("idle")
 	
+	# check is steve is present and hold all motion if ensnared 
+	snake_handle = get_node("/root/Node3D")
+	if has_node("/root/Node3D/steve"):
+		
+		snake_handle.ensnared_status.connect(hold_all_motion.bind())
+		snake_handle.free_to_go.connect(resume_all_motion.bind())
+	
+	
 	
 	item_in_hand = whats_in_hand_haldle.current_hand_item
 	
 	walking_sound = true
-	
-	if flag[3] == 1 and not is_jumping and not landed and not interacting:
-		animation_handle.speed_scale = 1
-		animation_handle.play("straft_l") 
-	elif flag[2] == 1 and not is_jumping and not landed  and not interacting:
-		animation_handle.speed_scale = 1
-		animation_handle.play("straft_r")
-	elif flag[1] == 1 and not is_jumping and not landed and not interacting:
-		animation_handle.speed_scale = 1
-		animation_handle.play("backwards")
-	elif flag[0] == 1 and not is_jumping and not landed and not interacting: # something is wrong with this code becasuse you can run when interacting 
-		
-		if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
-			print("jump triggered ")
+	if not no_movement:
+		if flag[3] == 1 and not is_jumping and not landed and not interacting:
+			animation_handle.speed_scale = 1
+			animation_handle.play("straft_l") 
+		elif flag[2] == 1 and not is_jumping and not landed  and not interacting:
+			animation_handle.speed_scale = 1
+			animation_handle.play("straft_r")
+		elif flag[1] == 1 and not is_jumping and not landed and not interacting:
+			animation_handle.speed_scale = 1
+			animation_handle.play("backwards")
+		elif flag[0] == 1 and not is_jumping and not landed and not interacting: # something is wrong with this code becasuse you can run when interacting 
+			
+			if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
+				print("jump triggered ")
+				animation_handle.speed_scale = 1
+				animation_handle.play("jump")
+				is_jumping = true
+				walking_sound = false
+			else:
+				animation_handle.speed_scale = 1
+				animation_handle.play("walk")
+		elif not is_jumping and not landed and not interacting:
+			animation_handle.speed_scale = 1
+			animation_handle.play("idle")
+			is_jumping = false
+			walking_sound = false
+			
+		if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
+			
 			animation_handle.speed_scale = 1
 			animation_handle.play("jump")
+			
 			is_jumping = true
 			walking_sound = false
-		else:
+		elif landed: # might be triggering before floor
+			print("should be landing")
 			animation_handle.speed_scale = 1
-			animation_handle.play("walk")
-	elif not is_jumping and not landed and not interacting:
-		animation_handle.speed_scale = 1
-		animation_handle.play("idle")
-		is_jumping = false
-		walking_sound = false
-		
-	if (flag[4] == 1 or is_jumping) and not landed and not interacting: # this is a problem 
-		
-		animation_handle.speed_scale = 1
-		animation_handle.play("jump")
-		
-		is_jumping = true
-		walking_sound = false
-	elif landed: # might be triggering before floor
-		print("should be landing")
-		animation_handle.speed_scale = 1
-		animation_handle.play("land")
-		is_jumping = false
-		walking_sound = false
+			animation_handle.play("land")
+			is_jumping = false
+			walking_sound = false
 
-# begin routine for aux animations 
-	if flag[6] == 1 and not is_jumping and not landed:
-		walking_sound = false
-		if pickup_thro_flip_flop == 1:
-			# decide whether its a upper object or lower object
-			if is_upper_handle.has_overlapping_bodies():
-				animation_handle.play("press")
+	# begin routine for aux animations 
+		if flag[6] == 1 and not is_jumping and not landed:
+			walking_sound = false
+			if pickup_thro_flip_flop == 1:
+				# decide whether its a upper object or lower object
+				if is_upper_handle.has_overlapping_bodies():
+					animation_handle.play("press")
+					
+				else:
+					animation_handle.speed_scale = 2
+					animation_handle.play("pickup")
+					print("pickup")
+				interacting = true
+			if pickup_thro_flip_flop == 2:
 				
-			else:
-				animation_handle.speed_scale = 2
-				animation_handle.play("pickup")
-				print("pickup")
+				print(is_instance_valid(whats_in_hand_haldle.current_hand_item))
+				if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
+					interacting = true
+					animation_handle.speed_scale = 2
+					animation_handle.play("drink")
+				else :
+					interacting = true
+					animation_handle.speed_scale = 2
+					animation_handle.play("throw")
+					
+		if flag[8] == 1 and not is_jumping and not landed:
+			walking_sound = false
+			animation_handle.play("press_2")
 			interacting = true
-		if pickup_thro_flip_flop == 2:
-			
-			print(is_instance_valid(whats_in_hand_haldle.current_hand_item))
-			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
-				interacting = true
-				animation_handle.speed_scale = 2
-				animation_handle.play("drink")
-			else :
-				interacting = true
-				animation_handle.speed_scale = 2
-				animation_handle.play("throw")
-				
-	if flag[8] == 1 and not is_jumping and not landed:
-		walking_sound = false
-		animation_handle.play("press_2")
-		interacting = true
-		print("press")
-		emit_signal("open_interact")
+			print("press")
+			emit_signal("open_interact")
 		
 	
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
@@ -151,3 +159,11 @@ func gimme_speech_bub(text_to_say):
 	
 	print("child found ", find_child("*"))
 	get_instance_id()
+	
+func hold_all_motion():
+	print("dont move , least try not to move ")
+	no_movement = true
+
+func resume_all_motion():
+	print("resume motion  ")
+	no_movement = false
