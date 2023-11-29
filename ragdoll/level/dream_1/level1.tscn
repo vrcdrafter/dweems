@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nsfocbvt7dkj"]
+[gd_scene load_steps=24 format=3 uid="uid://nsfocbvt7dkj"]
 
 [ext_resource type="Script" path="res://steve/master.gd" id="1_0fnbo"]
 [ext_resource type="PackedScene" uid="uid://bqv7os70gkkry" path="res://animations/character_movement_2.tscn" id="1_iq4lg"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://bed_changer_house_scene.gd" id="12_45b0i"]
 [ext_resource type="PackedScene" uid="uid://rn252bghw5p0" path="res://steve/resting_pedistal.tscn" id="13_h45te"]
 [ext_resource type="Curve3D" uid="uid://d3nu0vo7q177y" path="res://steve/idle_path.tres" id="14_7vehk"]
-[ext_resource type="Script" path="res://snake_speech.gd" id="14_drc78"]
+[ext_resource type="PackedScene" uid="uid://brga8qn2cccw6" path="res://sounds/dialoge_system_2.tscn" id="15_3js45"]
 
 [sub_resource type="Sky" id="Sky_4uimr"]
 
@@ -43,9 +43,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_krc2m"]
 size = Vector3(3.78434, 1, 1.44255)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lgqmg"]
-size = Vector3(1.53046, 2.13186, 3.29516)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_grn4b"]
 size = Vector3(46.8571, 31.643, 28.42)
@@ -84,9 +81,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150865, 0.193356, 0.1801
 body_offset = Transform3D(0.895846, -0.392518, 0.176836, 0.338906, 0.398255, -0.848822, 0.263297, 0.82682, 0.492553, -0.0911217, 0.0248203, -0.288349)
 
 [node name="Physical Bone Left shoulder" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="6"]
-transform = Transform3D(-0.0266185, -0.392224, -0.918951, -0.0188222, 0.921331, -0.391826, 0.998079, 0.00687809, -0.0317534, 0.0583916, 1.64033, 0.0177269)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106365, -0.0515638, 0.028235)
-body_offset = Transform3D(0.778306, -0.56638, -0.268895, -0.386373, -0.0961549, -0.916627, 0.492118, 0.820187, -0.294104, -0.104397, 0.0620193, -0.00174809)
+transform = Transform3D(-0.0266151, -0.392224, -0.918951, -0.0188255, 0.921331, -0.391826, 0.998038, 0.00687809, -0.0317534, 0.0583916, 1.64033, 0.0177269)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106369, -0.0515633, 0.028235)
+body_offset = Transform3D(0.778276, -0.56638, -0.268895, -0.386356, -0.0961549, -0.916627, 0.492094, 0.820187, -0.294104, -0.104397, 0.0620193, -0.00174809)
 
 [node name="Physical Bone Left arm" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="7"]
 transform = Transform3D(-0.649474, 0.709221, -0.272439, -0.0328171, 0.331419, 0.944024, 0.758893, 0.621312, -0.192402, 0.189499, 1.51762, 0.053093)
@@ -116,7 +113,7 @@ body_offset = Transform3D(0.76201, 0.0107107, 0.674774, 0.637902, 0.322428, -0.7
 [node name="Physical Bone Right elbow" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="12"]
 transform = Transform3D(-0.15503, -0.983487, 0.0902221, -0.209739, 0.121902, 0.969834, -0.967018, 0.131171, -0.225127, -0.268692, 1.14636, 0.100544)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249322, 0.0501789, 0.215093)
-body_offset = Transform3D(0.988098, 0.147428, 0.0709363, 0.0430317, 0.183192, -0.981826, -0.157985, 0.971606, 0.174316, 0.00197983, 0.203064, -0.0901871)
+body_offset = Transform3D(0.988098, 0.147428, 0.0709363, 0.0430316, 0.183192, -0.981826, -0.157985, 0.971606, 0.174316, 0.00197983, 0.203064, -0.0901871)
 
 [node name="Physical Bone Right wrist" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="13"]
 transform = Transform3D(-0.260679, -0.958321, 0.129507, -0.201349, 0.185128, 0.96148, -0.946014, 0.224972, -0.240213, -0.291748, 0.958927, 0.18504)
@@ -139,9 +136,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408382, -0.0722553, 0.
 body_offset = Transform3D(0.88077, -0.296873, -0.366226, -0.327981, 0.167795, -0.934674, 0.336787, 0.939066, 0.0502486, 0.0804405, 0.166975, 0.0725613)
 
 [node name="Physical Bone Left toe" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="17"]
-transform = Transform3D(-0.883081, -0.0260317, -0.456978, -0.0204388, 1.00135, -0.0165928, 0.456224, -0.00545891, -0.88791, 0.380981, 0.0997295, 0.243687)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.136999, 0.056078, 0.0584377)
-body_offset = Transform3D(0.849117, 0.016686, 0.518179, 0.517067, -0.0381799, -0.852816, 0.00559973, 1.00084, -0.0410447, -0.147545, -0.0188599, -0.0544937)
+transform = Transform3D(-0.88306, -0.0260317, -0.456978, -0.0204393, 1.00135, -0.0165928, 0.456211, -0.00545891, -0.88791, 0.380981, 0.0997295, 0.243687)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137002, 0.0560781, 0.0584375)
+body_offset = Transform3D(0.849097, 0.016686, 0.518179, 0.517053, -0.0381799, -0.852816, 0.00559859, 1.00084, -0.0410447, -0.147545, -0.0188599, -0.0544937)
 
 [node name="Physical Bone Right leg" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="18"]
 transform = Transform3D(0.952331, 0.0846613, 0.17704, -0.0806493, -0.622835, 0.775912, 0.174096, -0.776912, -0.603829, -0.132439, 0.754398, 0.10955)
@@ -404,14 +401,6 @@ collision_mask = 2
 [node name="Path3D" parent="resting_space" index="0"]
 curve = ExtResource("14_7vehk")
 
-[node name="Area3D2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9442, -4.63568, 49.928)
-script = ExtResource("14_drc78")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.213425, 0.663095, -0.117634)
-shape = SubResource("BoxShape3D_lgqmg")
-
 [node name="chase_region" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.4036, 6.09438, 36.078)
 collision_layer = 7
@@ -425,9 +414,11 @@ shape = SubResource("BoxShape3D_grn4b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.6283, -4.50609, 49.8036)
 mesh = SubResource("CylinderMesh_s062c")
 
+[node name="dialoge_system" parent="." instance=ExtResource("15_3js45")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.2572, -4.63568, 50.4601)
+
 [connection signal="body_entered" from="bed_changer" to="bed_changer" method="_on_body_entered" flags=18]
 [connection signal="body_exited" from="bed_changer" to="bed_changer" method="_on_body_exited" flags=18]
-[connection signal="body_entered" from="Area3D2" to="Area3D2" method="_on_body_entered" flags=18]
 [connection signal="body_entered" from="chase_region" to="." method="_on_chase_region_body_entered"]
 
 [editable path="untitled"]

@@ -21,7 +21,10 @@ signal open_interact
 @export var walking_sound = true
 
 func _ready():
-	pass
+	snake_handle = get_node("/root/Node3D")
+	if has_node("/root/Node3D/steve"):
+		snake_handle.ensnared_status.connect(hold_all_motion.bind())
+		snake_handle.free_to_go.connect(resume_all_motion.bind())
 
 func _process(delta):
 	anim_flag_handle = get_node("../..")
@@ -34,11 +37,7 @@ func _process(delta):
 	animation_track_handle = animation_handle.get_animation("idle")
 	
 	# check is steve is present and hold all motion if ensnared 
-	snake_handle = get_node("/root/Node3D")
-	if has_node("/root/Node3D/steve"):
-		
-		snake_handle.ensnared_status.connect(hold_all_motion.bind())
-		snake_handle.free_to_go.connect(resume_all_motion.bind())
+
 	
 	
 	

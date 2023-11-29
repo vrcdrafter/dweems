@@ -23,13 +23,16 @@ var interacting = false
 func _ready():
 	var timer = get_node("untitled/AnimationPlayer")
 	timer.animation_finished.connect(_on_animation_player_animation_finished)
-
-func _physics_process(delta: float) -> void:
+	
 	snake_handle = get_node("..")
-	# signal for ensnared ( from steve )
 	if has_node("../steve"):
 		snake_handle.ensnared_status.connect(hold_all_motion.bind())
 		snake_handle.free_to_go.connect(resume_all_motion.bind())
+
+func _physics_process(delta: float) -> void:
+	
+	# signal for ensnared ( from steve )
+	
 	
 	
 	# check for closing the program 
