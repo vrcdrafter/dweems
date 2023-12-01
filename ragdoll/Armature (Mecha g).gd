@@ -121,7 +121,7 @@ func _process(delta):
 			walking_sound = false
 			animation_handle.play("press_2")
 			interacting = true
-			print("one shot condition ", one_shot_sig)
+			
 			if one_shot_sig:
 				print("signale emitting from armature ")
 				emit_signal("open_interact")
