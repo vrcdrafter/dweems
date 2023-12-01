@@ -14,7 +14,9 @@ var is_jumping = false
 var no_movement = false
 var is_upper_handle
 var snake_handle
+var dialogue_handle
 signal open_interact
+var one_shot_sig = true
 
 @export var pickup_thro_flip_flop = 1
 
@@ -25,6 +27,11 @@ func _ready():
 	if has_node("/root/Node3D/steve"):
 		snake_handle.ensnared_status.connect(hold_all_motion.bind())
 		snake_handle.free_to_go.connect(resume_all_motion.bind())
+		
+	dialogue_handle = get_node("/root/Node3D/dialoge_system")
+	if has_node("/root/Node3D/dialoge_system"):
+		dialogue_handle.dialogue_done.connect(can_talk_again.bind())
+
 
 func _process(delta):
 	anim_flag_handle = get_node("../..")
@@ -114,8 +121,11 @@ func _process(delta):
 			walking_sound = false
 			animation_handle.play("press_2")
 			interacting = true
-			print("press")
-			emit_signal("open_interact")
+			print("one shot condition ", one_shot_sig)
+			if one_shot_sig:
+				print("signale emitting from armature ")
+				emit_signal("open_interact")
+				one_shot_sig = false
 		
 	
 func _on_animation_player_animation_finished(anim_name): # action , need to have cup leave hand on throw, might need to be groups
@@ -134,16 +144,16 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		interacting = false
 	if anim_name == "drink":
 		pickup_thro_flip_flop = 1
-		print("finished drink")
+		
 		interacting = false
 	if anim_name == "press":
 		pickup_thro_flip_flop = 2
-		print("finished drink")
+		
 		interacting = false
 		
 	if anim_name == "press_2":
 		pickup_thro_flip_flop = 2
-		print("finished drink")
+		
 		interacting = false
 
 
@@ -166,3 +176,8 @@ func hold_all_motion():
 func resume_all_motion():
 	print("resume motion  ")
 	no_movement = false
+	
+	
+func can_talk_again():
+	one_shot_sig = true
+	

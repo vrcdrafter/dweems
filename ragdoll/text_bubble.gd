@@ -21,7 +21,7 @@ func _ready():
 	
 
 	
-	tween.tween_property($wrapper, "scale", Vector3(.7,.7,.7),.5).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($wrapper, "scale", Vector3(.7,.7,.7),.1).set_trans(Tween.TRANS_ELASTIC)
 	#tween.tween_callback($Sprite.queue_free)
 	await get_tree().create_timer(1).timeout
 	arr_new = make_array(text)
@@ -45,7 +45,7 @@ func _ready():
 	# closer timer
 	await get_tree().create_timer(4).timeout
 	var tween_close = get_tree().create_tween()
-	tween_close.tween_property($wrapper, "scale", Vector3(.1,.1,.1),1.5).set_trans(Tween.TRANS_ELASTIC)
+	tween_close.tween_property($wrapper, "scale", Vector3(.1,.1,.1),.1).set_trans(Tween.TRANS_ELASTIC)
 	tween_close.connect("finished",on_tween_finished)
 	
 	
