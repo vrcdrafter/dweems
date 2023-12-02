@@ -36,7 +36,7 @@ billboard = 1
 no_depth_test = true
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "This is a text
+text = "
 "
 font = SubResource("SystemFont_5l07t")
 font_size = 80

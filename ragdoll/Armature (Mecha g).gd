@@ -50,17 +50,20 @@ func _process(delta):
 	
 	item_in_hand = whats_in_hand_haldle.current_hand_item
 	
-	walking_sound = true
+	
 	if not no_movement:
 		if flag[3] == 1 and not is_jumping and not landed and not interacting:
 			animation_handle.speed_scale = 1
 			animation_handle.play("straft_l") 
+			walking_sound = true
 		elif flag[2] == 1 and not is_jumping and not landed  and not interacting:
 			animation_handle.speed_scale = 1
 			animation_handle.play("straft_r")
+			walking_sound = true
 		elif flag[1] == 1 and not is_jumping and not landed and not interacting:
 			animation_handle.speed_scale = 1
 			animation_handle.play("backwards")
+			walking_sound = true
 		elif flag[0] == 1 and not is_jumping and not landed and not interacting: # something is wrong with this code becasuse you can run when interacting 
 			
 			if (Input.is_action_just_pressed("jump") or is_jumping) and not landed and not interacting: # this is a problem 
@@ -72,6 +75,7 @@ func _process(delta):
 			else:
 				animation_handle.speed_scale = 1
 				animation_handle.play("walk")
+				walking_sound = true
 		elif not is_jumping and not landed and not interacting:
 			animation_handle.speed_scale = 1
 			animation_handle.play("idle")
@@ -99,11 +103,12 @@ func _process(delta):
 				# decide whether its a upper object or lower object
 				if is_upper_handle.has_overlapping_bodies():
 					animation_handle.play("press")
-					
+					walking_sound = false
 				else:
 					animation_handle.speed_scale = 2
 					animation_handle.play("pickup")
 					print("pickup")
+					walking_sound = false
 				interacting = true
 			if pickup_thro_flip_flop == 2:
 				
@@ -112,10 +117,12 @@ func _process(delta):
 					interacting = true
 					animation_handle.speed_scale = 2
 					animation_handle.play("drink")
+					walking_sound = false
 				else :
 					interacting = true
 					animation_handle.speed_scale = 2
 					animation_handle.play("throw")
+					walking_sound = false
 					
 		if flag[8] == 1 and not is_jumping and not landed:
 			walking_sound = false

@@ -13,7 +13,7 @@ var start_dialoge = false
 
 func _ready():
 	
-	
+	$Node2D/Label.hide()
 	player_handle = get_node("/root/Node3D/untitled/untitled/Armature (Mecha g)")
 	print("player handle ", player_handle)
 	player_handle.open_interact.connect(begin_dialogue.bind())
@@ -27,8 +27,10 @@ func _process(delta):
 	
 	if not self.overlaps_body(player):
 		text_next = 0
+		$Node2D/Label.hide()
 
 	if self.overlaps_body(player):
+		$Node2D/Label.show()
 		#print(" back in area ")
 		#self.quedue_free()
 		#print("text next  ",text_next)
