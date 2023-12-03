@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 LoadManager="*res://autoloads/load_manager.gd"
 
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/csgtomeshinstance/plugin.cfg", "res://addons/terrain_3d/editor/plugin.cfg")

@@ -19,6 +19,7 @@ var interact_script_handle
 var snake_handle
 var no_movement = false
 var interacting = false
+var dialogue_handle
 
 func _ready():
 	var timer = get_node("untitled/AnimationPlayer")
@@ -28,7 +29,11 @@ func _ready():
 	if has_node("../steve"):
 		snake_handle.ensnared_status.connect(hold_all_motion.bind())
 		snake_handle.free_to_go.connect(resume_all_motion.bind())
+	dialogue_handle = get_node("/root/Node3D/Path3D/PathFollow3D18/MeshInstance3D/dialoge_system")
+	if has_node("/root/Node3D/Path3D/PathFollow3D18/MeshInstance3D/dialoge_system"):
 
+		dialogue_handle.dont_move_chat.connect(hold_all_motion.bind())
+		dialogue_handle.resume_move.connect(resume_all_motion.bind())	
 func _physics_process(delta: float) -> void:
 	
 	# signal for ensnared ( from steve )
@@ -87,6 +92,7 @@ func _physics_process(delta: float) -> void:
 	if Input.get_action_strength("interact") > 0 and is_on_floor() and (collission_shape_handle.has_overlapping_bodies() or collission_shape_handle_upper.has_overlapping_bodies()  or (interact_script_handle.pickup_thro_flip_flop == 2)): 
 		
 		animation_flags[6] = 1
+		
 		
 	else:
 		animation_flags[6] = 0
@@ -203,7 +209,7 @@ func _on_animation_player_animation_started(anim_name):
 		interacting = true
 
 func hold_all_motion():
-	print("dont move , least try not to move ")
+	#print("dont move , least try not to move ")
 	no_movement = true
 func resume_all_motion():
 	print("resume motion  ")
