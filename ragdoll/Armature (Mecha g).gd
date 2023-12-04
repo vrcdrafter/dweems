@@ -8,7 +8,7 @@ var item_in_hand
 var anim_flag_handle
 var flag
 var landed
-var interacting  = false
+@export var interacting  = false
 var is_in_air
 var is_jumping = false
 var no_movement = false
@@ -35,7 +35,7 @@ func _ready():
 		dialogue_handle.dialogue_done.connect(can_talk_again.bind())
 		dialogue_handle.dont_move_chat.connect(hold_all_motion.bind())
 		dialogue_handle.resume_move.connect(resume_all_motion.bind())
-		
+
 	#bindings for conversation
 
 

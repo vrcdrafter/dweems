@@ -78,9 +78,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.150865, 0.193356, 0.1801
 body_offset = Transform3D(0.895846, -0.392518, 0.176836, 0.338906, 0.398255, -0.848822, 0.263297, 0.82682, 0.492553, -0.0911217, 0.0248203, -0.288349)
 
 [node name="Physical Bone Left shoulder" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="6"]
-transform = Transform3D(-0.0266216, -0.392224, -0.918951, -0.0188445, 0.921331, -0.391826, 0.997768, 0.00687809, -0.0317534, 0.0583916, 1.64033, 0.0177269)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106398, -0.0515615, 0.0282327)
-body_offset = Transform3D(0.778071, -0.56638, -0.268895, -0.386271, -0.0961549, -0.916627, 0.491941, 0.820187, -0.294104, -0.104397, 0.0620193, -0.00174809)
+transform = Transform3D(-0.0266519, -0.392224, -0.918951, -0.018855, 0.921331, -0.391826, 0.997619, 0.00687809, -0.0317534, 0.0583916, 1.64033, 0.0177269)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.106414, -0.0515617, 0.0282288)
+body_offset = Transform3D(0.777944, -0.56638, -0.268895, -0.386247, -0.0961549, -0.916627, 0.491858, 0.820187, -0.294104, -0.104397, 0.0620193, -0.00174809)
 
 [node name="Physical Bone Left arm" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="7"]
 transform = Transform3D(-0.649474, 0.709221, -0.272439, -0.0328171, 0.331419, 0.944024, 0.758893, 0.621312, -0.192402, 0.189499, 1.51762, 0.053093)
@@ -110,7 +110,7 @@ body_offset = Transform3D(0.76201, 0.0107107, 0.674774, 0.637902, 0.322428, -0.7
 [node name="Physical Bone Right elbow" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="12"]
 transform = Transform3D(-0.15503, -0.983487, 0.0902221, -0.209739, 0.121902, 0.969834, -0.967018, 0.131171, -0.225127, -0.268692, 1.14636, 0.100544)
 joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0249322, 0.0501789, 0.215093)
-body_offset = Transform3D(0.988098, 0.147428, 0.0709363, 0.0430317, 0.183192, -0.981826, -0.157985, 0.971606, 0.174316, 0.00197983, 0.203064, -0.0901871)
+body_offset = Transform3D(0.988098, 0.147428, 0.0709363, 0.0430316, 0.183192, -0.981826, -0.157985, 0.971606, 0.174316, 0.00197983, 0.203064, -0.0901871)
 
 [node name="Physical Bone Right wrist" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="13"]
 transform = Transform3D(-0.260679, -0.958321, 0.129507, -0.201349, 0.185128, 0.96148, -0.946014, 0.224972, -0.240213, -0.291748, 0.958927, 0.18504)
@@ -133,9 +133,9 @@ joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0408382, -0.0722553, 0.
 body_offset = Transform3D(0.88077, -0.296873, -0.366226, -0.327981, 0.167795, -0.934674, 0.336787, 0.939066, 0.0502486, 0.0804405, 0.166975, 0.0725613)
 
 [node name="Physical Bone Left toe" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="17"]
-transform = Transform3D(-0.88297, -0.0260317, -0.456978, -0.0204412, 1.00135, -0.0165928, 0.456165, -0.00545891, -0.88791, 0.380981, 0.0997295, 0.243687)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137016, 0.0560786, 0.0584375)
-body_offset = Transform3D(0.84901, 0.016686, 0.518179, 0.517001, -0.0381799, -0.852816, 0.00559402, 1.00084, -0.0410447, -0.147545, -0.0188599, -0.0544937)
+transform = Transform3D(-0.882968, -0.0260317, -0.456978, -0.0204412, 1.00135, -0.0165928, 0.456165, -0.00545891, -0.88791, 0.380981, 0.0997295, 0.243687)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.137016, 0.0560787, 0.0584376)
+body_offset = Transform3D(0.849009, 0.016686, 0.518179, 0.517001, -0.0381799, -0.852816, 0.00559397, 1.00084, -0.0410447, -0.147545, -0.0188599, -0.0544937)
 
 [node name="Physical Bone Right leg" parent="untitled/untitled/Armature (Mecha g)/Skeleton3D" index="18"]
 transform = Transform3D(0.952331, 0.0846613, 0.17704, -0.0806493, -0.622835, 0.775912, 0.174096, -0.776912, -0.603829, -0.132439, 0.754398, 0.10955)
@@ -219,106 +219,126 @@ target_desired_distance = 4.22
 [node name="Path3D" parent="." instance=ExtResource("6_igqgv")]
 
 [node name="PathFollow3D" parent="Path3D" index="0"]
+transform = Transform3D(-0.905289, 0.0243739, 0.424088, -9.3132e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D" index="0"]
 visible = false
 
 [node name="PathFollow3D2" parent="Path3D" index="1"]
+transform = Transform3D(-0.905291, 0.024374, 0.42409, -9.31321e-10, 0.998352, -0.0573789, -0.424789, -0.0519446, -0.9038, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D2" index="0"]
 visible = false
 
 [node name="PathFollow3D3" parent="Path3D" index="2"]
+transform = Transform3D(-0.905292, 0.024374, 0.424089, -9.31323e-10, 0.998352, -0.0573787, -0.42479, -0.0519446, -0.903797, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D3" index="0"]
 visible = false
 
 [node name="PathFollow3D4" parent="Path3D" index="3"]
+transform = Transform3D(-0.905292, 0.024374, 0.424089, -9.31323e-10, 0.998352, -0.0573787, -0.42479, -0.0519446, -0.903797, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D4" index="0"]
 visible = false
 
 [node name="PathFollow3D5" parent="Path3D" index="4"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D5" index="0"]
 visible = false
 
 [node name="PathFollow3D6" parent="Path3D" index="5"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D6" index="0"]
 visible = false
 
 [node name="PathFollow3D7" parent="Path3D" index="6"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D7" index="0"]
 visible = false
 
 [node name="PathFollow3D8" parent="Path3D" index="7"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D8" index="0"]
 visible = false
 
 [node name="PathFollow3D9" parent="Path3D" index="8"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D9" index="0"]
 visible = false
 
 [node name="PathFollow3D10" parent="Path3D" index="9"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D10" index="0"]
 visible = false
 
 [node name="PathFollow3D11" parent="Path3D" index="10"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D11" index="0"]
 visible = false
 
 [node name="PathFollow3D12" parent="Path3D" index="11"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D12" index="0"]
 visible = false
 
 [node name="PathFollow3D13" parent="Path3D" index="12"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.99835, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D13" index="0"]
 visible = false
 
 [node name="PathFollow3D14" parent="Path3D" index="13"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D14" index="0"]
 visible = false
 
 [node name="PathFollow3D15" parent="Path3D" index="14"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D15" index="0"]
 visible = false
 
 [node name="PathFollow3D16" parent="Path3D" index="15"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D16" index="0"]
 visible = false
 
 [node name="PathFollow3D17" parent="Path3D" index="16"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 visible = false
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D17" index="0"]
 visible = false
+
+[node name="PathFollow3D18" parent="Path3D" index="17"]
+transform = Transform3D(-0.905291, 0.0243739, 0.424088, -9.31321e-10, 0.998349, -0.0573786, -0.424789, -0.0519445, -0.903796, 0.620493, 1.6294, 34.715)
 
 [node name="MeshInstance3D" parent="Path3D/PathFollow3D18" index="0"]
 mesh = SubResource("PointMesh_a1ygf")

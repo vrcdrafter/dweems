@@ -36,8 +36,8 @@ func _ready():
 		dialogue_handle.resume_move.connect(resume_all_motion.bind())	
 func _physics_process(delta: float) -> void:
 	
-	# signal for ensnared ( from steve )
-	
+	# if you have any interaciton movement is locked out 
+	no_movement = get_node("untitled/Armature (Mecha g)").interacting
 	
 	
 	# check for closing the program 
