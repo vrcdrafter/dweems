@@ -37,7 +37,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	
 	# if you have any interaciton movement is locked out 
-	no_movement = get_node("untitled/Armature (Mecha g)").interacting
+	interacting = get_node("untitled/Armature (Mecha g)").interacting #this counters ensnarment
 	
 	
 	# check for closing the program 
@@ -209,7 +209,7 @@ func _on_animation_player_animation_started(anim_name):
 		interacting = true
 
 func hold_all_motion():
-	#print("dont move , least try not to move ")
+	print("dont move , least try not to move ")
 	no_movement = true
 func resume_all_motion():
 	print("resume motion  ")

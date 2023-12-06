@@ -79,7 +79,7 @@ func _ready():
 	missing_model_material.flags_unshaded = true
 	missing_model_material.albedo_color = Color(255, 0, 255)
 	snake_target = pedistal # what the snake is seeking .  initially
-	
+	# 
 	path_handle_1.progress = 2.0
 	path_handle_2.progress = 2.5
 	path_handle_3.progress = 3.0
@@ -166,9 +166,10 @@ func _physics_process(delta):
 		sequence += 1
 		
 		sequence = clamp(sequence,0,3)
-		if sequence == 3 and snake_target == player:
+		if sequence == 3 and snake_target == player and $Path3D/PathFollow3D18/MeshInstance3D/dialoge_system.resume_move_snake:  #use a signal instaed 
 			print(" shold go to pedistal now ")
 			ensnared = false 
+			
 			snake_target = pedistal
 			summation_distance += 1 # jump start the distance . 
 			lenght_proxy += 1 # this is a problem , it will go back into this loop again if ------>

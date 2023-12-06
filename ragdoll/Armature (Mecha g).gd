@@ -17,7 +17,7 @@ var snake_handle
 var dialogue_handle
 signal open_interact
 var one_shot_sig = true
-
+var tv_handl
 
 @export var pickup_thro_flip_flop = 1
 
@@ -36,6 +36,13 @@ func _ready():
 		dialogue_handle.dont_move_chat.connect(hold_all_motion.bind())
 		dialogue_handle.resume_move.connect(resume_all_motion.bind())
 
+	# declaration of items 
+	# 
+
+
+	if has_node("../../../tv/Area3D"):
+		tv_handl = get_node("../../../tv/Area3D")
+		print("tv", tv_handl.viscinity)
 	#bindings for conversation
 
 
@@ -131,15 +138,20 @@ func _process(delta):
 				walking_sound = false
 				
 	if flag[8] == 1 and not is_jumping and not landed:
-		print("call to talk", one_shot_sig)
-		if one_shot_sig: # signal for cummunication 
-			print("signale emitting from armature ")
+		
+		if one_shot_sig: # get handle for node
+			
 			emit_signal("open_interact")
 			interacting = true
 			walking_sound = false
 			one_shot_sig = false
+		elif tv_handl != null :
+			if tv_handl.viscinity:
+				emit_signal("open_interact")
+				interacting = true
+				walking_sound = false
+				animation_handle.play("press_2")
 		else:
-			
 			walking_sound = false
 			interacting = true
 			if not no_movement:

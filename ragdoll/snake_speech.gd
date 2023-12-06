@@ -1,20 +1,22 @@
 extends Area3D
 
-@export var text_new = "This is just a dialoge test"
+@export var text_new:Array = ["Hello welcome to \n your deam", "dont worry about \n me im just an", "annoying snake"]
 @export var target_node = ".."  # just do a path as a string
 @export var theme = "res://textures/speech_bubble_snake.png"
+@export var run_dialogue = true
 @onready var scene = preload("res://animations/text_bubble.tscn")
 @onready var player = get_node("/root/Node3D/untitled")
 @onready var player_handle
 var text_next = 0
 signal dialogue_done
-var dialogue_counter = 0
 var start_dialoge = false
+var dialogue_counter = 0
 signal dont_move_chat
 signal resume_move
+@export var resume_move_snake = false
 
 var id
-var max_dialogue = 3
+var max_dialogue = 0
 
 func _ready():
 	
@@ -22,64 +24,68 @@ func _ready():
 	player_handle = get_node("/root/Node3D/untitled/untitled/Armature (Mecha g)")
 	print("player handle ", player_handle)
 	player_handle.open_interact.connect(begin_dialogue.bind())
+	max_dialogue = text_new.size()
 
 func _process(delta):
 	
-	if text_next == 1:
-		dialogue_counter += 1
-		text_next = 0 
+	resume_move_snake = false
 	
-	
-	if not self.overlaps_body(player):
-		text_next = 0
-		$Node2D/Label.hide()
-		dialogue_counter = 0
+	if run_dialogue:
+		if text_next == 1:
+			dialogue_counter += 1
+			text_next = 0 
+		
+		
+		if not self.overlaps_body(player):
+			text_next = 0
+			$Node2D/Label.hide()
+			dialogue_counter = 0
 
-	if self.overlaps_body(player):
-		
-		$Node2D/Label.show()
-		
-		#print(" back in area ")
-		#self.quedue_free()
-		#print("text next  ",text_next)
-		if start_dialoge:
-			emit_signal("dont_move_chat")
-			var new_dialogue = scene.instantiate()
-			new_dialogue.text_box_theme = theme
+		if self.overlaps_body(player):
 			
+			$Node2D/Label.show()
+			# get lenght of text 
 			
-			if not id == null:
-				if is_instance_id_valid(id):
-					print("found by ID")
-					
-					instance_from_id(id).queue_free()
-					
+			#print("text next  ",text_next)
+			if start_dialoge:
+				emit_signal("dont_move_chat")
+				var new_dialogue = scene.instantiate()
+				new_dialogue.text_box_theme = theme
 				
-			
-			if dialogue_counter == 1:
-				new_dialogue.text = "text #1 "
-			
-			elif  dialogue_counter == 2:
-				new_dialogue.text = "text # 2"
-			
-			else:
 				
-				new_dialogue.text = "text # 3"
-			if not dialogue_counter > max_dialogue:
-				get_node(target_node).add_child(new_dialogue)
-				id = new_dialogue.get_instance_id()
-			else:
-				emit_signal("resume_move")
-			#await get_tree().create_timer(.01).timeout #100 ms time 
-			
-			start_dialoge = false
+				if not id == null:
+					if is_instance_id_valid(id):
+						print("found by ID")
+						
+						instance_from_id(id).queue_free()
+						
+					# sets the text
+				if not (dialogue_counter -1) > (text_new.size()-1):
+					print("current dialogue counter ",dialogue_counter-1)
+					new_dialogue.text = text_new[dialogue_counter-1]
+		
+					
+					
+					# done setting text
+				if not dialogue_counter > max_dialogue:
+					get_node(target_node).add_child(new_dialogue)
+					id = new_dialogue.get_instance_id()
+					resume_move_snake = false
+				else:
+					emit_signal("resume_move")
+					
+					resume_move_snake = true
+					print("resume move snake", resume_move_snake)
+				#await get_tree().create_timer(.01).timeout #100 ms time 
+				
+				start_dialoge = false
 		
 		
 
 func begin_dialogue():
 	
 	text_next += 1
-	print("bring me some dialogue ", text_next)
+	
 	start_dialoge = true
 	await get_tree().create_timer(1).timeout #100 ms time 
 	emit_signal("dialogue_done")

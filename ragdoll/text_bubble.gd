@@ -25,7 +25,7 @@ func _ready():
 	#tween.tween_callback($Sprite.queue_free)
 	await get_tree().create_timer(1).timeout
 	arr_new = make_array(text)
-	
+	# leans
 	
 	
 	var i = 0
