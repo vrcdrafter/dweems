@@ -23,7 +23,7 @@ var snake_target
 @onready var path_handle_16 = get_node("Path3D/" + "PathFollow3D16")
 @onready var path_handle_17 = get_node("Path3D/" + "PathFollow3D17")
 @onready var path_handle_18 = get_node("Path3D/" + "PathFollow3D18")
-
+@onready var dialogue_handle = $Path3D/PathFollow3D18/MeshInstance3D/dialoge_system
 @onready var path1 = $Path3D/PathFollow3D
 var bone_speed = 3.0
 var length = 0.0
@@ -69,6 +69,7 @@ var lenght_proxy = 1.0   # this is the lenght of the path which we fake sometime
 var sequence = 0 # used to control when the snake has stopped moving 
 var done_moving_oneshot = false
 var lenght_exception = false
+var move_to_new_target = false
 
 func _ready():
 	var Snake_skeleton = get_node("steve2")
@@ -104,6 +105,10 @@ func _ready():
 
 	
 	# get all ensnarement curve data 
+	# signal for getting conversaton 
+	if has_node("/root/Node3D/Path3D/PathFollow3D18/MeshInstance3D/dialoge_system"):
+		print("signals connected")
+		dialogue_handle.resume_move.connect(hold_target.bind())
 
 
 
@@ -166,7 +171,7 @@ func _physics_process(delta):
 		sequence += 1
 		
 		sequence = clamp(sequence,0,3)
-		if sequence == 3 and snake_target == player and $Path3D/PathFollow3D18/MeshInstance3D/dialoge_system.resume_move_snake:  #use a signal instaed 
+		if sequence == 3 and snake_target == player and move_to_new_target:  #use a signal instaed 
 			print(" shold go to pedistal now ")
 			ensnared = false 
 			
@@ -176,6 +181,8 @@ func _physics_process(delta):
 			emit_signal("free_to_go")
 			sequence = 1
 			lenght_exception = true
+			
+			
 			
 		path_handle_1.progress += 0
 		path_handle_2.progress += 0
@@ -232,7 +239,7 @@ func _physics_process(delta):
 			
 		speed = 1.0
 	else:
-		
+		move_to_new_target = false # not sure if this should go here but it should help the snake stop at the next target
 		speed += .01 # rampup for snake's speed. 
 	
 		
@@ -352,9 +359,13 @@ func _on_chase_region_body_entered(body):
 		summation_distance += 1 # jump start the distance . 
 		lenght_proxy += 1
 		snake_target = player # add headstart 
+		dialogue_handle.text_new = ["im sorry I lied","I need your help finding my \n hats","follow me"]
 		sequence = 1
 		ensnared = false # should send snake on its way . 
 		
 		
-		
+func hold_target():
+	move_to_new_target = true
+	print(" conversation finished ")
+	
 		

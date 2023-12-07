@@ -13,6 +13,7 @@ var start_dialoge = false
 var dialogue_counter = 0
 signal dont_move_chat
 signal resume_move
+
 @export var resume_move_snake = false
 
 var id
