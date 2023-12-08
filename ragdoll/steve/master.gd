@@ -71,6 +71,8 @@ var done_moving_oneshot = false
 var lenght_exception = false
 var move_to_new_target = false
 
+var offset_pos_initial = Vector3(0,0,0)
+
 func _ready():
 	var Snake_skeleton = get_node("steve2")
 	one_shot = true 
@@ -100,7 +102,7 @@ func _ready():
 	path_handle_17.progress = 10.5
 	path_handle_18.progress = 11
 	
-	
+	offset_pos_initial = $Path3D.position
 	# give me a test triangle , you can delete 
 
 	
