@@ -10,8 +10,9 @@ var in_bed_area = false
 
 
 func _process(delta):
-	anim_flag_handle = get_node("../untitled")
-	status_array = anim_flag_handle.animation_flags
+	if is_instance_valid(get_node("../untitled")):
+		anim_flag_handle = get_node("../untitled")
+		status_array = anim_flag_handle.animation_flags
 	
 	if status_array[8] == 1 and in_bed_area:
 		print(" can change scenes")

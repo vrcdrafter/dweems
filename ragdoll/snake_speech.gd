@@ -29,6 +29,9 @@ func _ready():
 
 func _process(delta):
 	
+	
+	
+	
 	resume_move_snake = false
 	
 	if run_dialogue:
@@ -36,50 +39,50 @@ func _process(delta):
 			dialogue_counter += 1
 			text_next = 0 
 		
-		
-		if not self.overlaps_body(player):
-			text_next = 0
-			$Node2D/Label.hide()
-			dialogue_counter = 0
-
-		if self.overlaps_body(player):
+		if is_instance_valid(player):
+			if not self.overlaps_body(player):
+				text_next = 0
+				$Node2D/Label.hide()
+				dialogue_counter = 0
+		if is_instance_valid(player):
+			if self.overlaps_body(player):
+				
+				$Node2D/Label.show()
+				# get lenght of text 
+				
+				#print("text next  ",text_next)
+				if start_dialoge:
+					emit_signal("dont_move_chat")
+					var new_dialogue = scene.instantiate()
+					new_dialogue.text_box_theme = theme
+					
+					
+					if not id == null:
+						if is_instance_id_valid(id):
+							print("found by ID")
+							
+							instance_from_id(id).queue_free()
+							
+						# sets the text
+					if not (dialogue_counter -1) > (text_new.size()-1):
+						print("current dialogue counter ",dialogue_counter-1)
+						new_dialogue.text = text_new[dialogue_counter-1]
 			
-			$Node2D/Label.show()
-			# get lenght of text 
-			
-			#print("text next  ",text_next)
-			if start_dialoge:
-				emit_signal("dont_move_chat")
-				var new_dialogue = scene.instantiate()
-				new_dialogue.text_box_theme = theme
-				
-				
-				if not id == null:
-					if is_instance_id_valid(id):
-						print("found by ID")
 						
-						instance_from_id(id).queue_free()
 						
-					# sets the text
-				if not (dialogue_counter -1) > (text_new.size()-1):
-					print("current dialogue counter ",dialogue_counter-1)
-					new_dialogue.text = text_new[dialogue_counter-1]
-		
+						# done setting text
+					if not dialogue_counter > max_dialogue:
+						get_node(target_node).add_child(new_dialogue)
+						id = new_dialogue.get_instance_id()
+						resume_move_snake = false
+					else:
+						emit_signal("resume_move")
+						
+						resume_move_snake = true
+						print("resume move snake", resume_move_snake)
+					#await get_tree().create_timer(.01).timeout #100 ms time 
 					
-					
-					# done setting text
-				if not dialogue_counter > max_dialogue:
-					get_node(target_node).add_child(new_dialogue)
-					id = new_dialogue.get_instance_id()
-					resume_move_snake = false
-				else:
-					emit_signal("resume_move")
-					
-					resume_move_snake = true
-					print("resume move snake", resume_move_snake)
-				#await get_tree().create_timer(.01).timeout #100 ms time 
-				
-				start_dialoge = false
+					start_dialoge = false
 		
 		
 
