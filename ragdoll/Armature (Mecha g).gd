@@ -16,7 +16,7 @@ var is_upper_handle
 var snake_handle
 var dialogue_handle
 signal open_interact
-var one_shot_sig = true
+@export var one_shot_sig = true
 var tv_handl
 
 @export var pickup_thro_flip_flop = 1
@@ -37,7 +37,7 @@ func _ready():
 		dialogue_handle.resume_move.connect(resume_all_motion.bind())
 
 	# declaration of items 
-	# 
+	one_shot_sig = true # temp set , may delete. 
 
 
 	if has_node("../../../tv/Area3D"):
@@ -138,9 +138,9 @@ func _process(delta):
 				walking_sound = false
 				
 	if flag[8] == 1 and not is_jumping and not landed:
-		
+		print("oneshot signal ",one_shot_sig)
 		if one_shot_sig: # get handle for node
-			
+			print("trying to talk")
 			emit_signal("open_interact")
 			interacting = true
 			walking_sound = false

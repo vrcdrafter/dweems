@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var text_new:Array = ["Hello welcome to \n your deam", "dont worry about \n me im just an", "annoying snake"]
+@export var text_new:Array = ["nil"]
 @export var target_node = ".."  # just do a path as a string
 @export var theme = "res://textures/speech_bubble_snake.png"
 @export var run_dialogue = true
@@ -25,13 +25,16 @@ func _ready():
 	player_handle = get_node("/root/Node3D/untitled/untitled/Armature (Mecha g)")
 	print("player handle ", player_handle)
 	player_handle.open_interact.connect(begin_dialogue.bind())
-	max_dialogue = text_new.size()
+	
 
 func _process(delta):
-	
-	
-	
-	
+	max_dialogue = text_new.size()
+	if is_instance_valid(get_node("/root/Node3D/untitled")):
+		player = get_node("/root/Node3D/untitled")
+		player_handle = get_node("/root/Node3D/untitled/untitled/Armature (Mecha g)")
+		if not player_handle.open_interact.is_connected(begin_dialogue):
+			player_handle.open_interact.connect(begin_dialogue.bind())
+
 	resume_move_snake = false
 	
 	if run_dialogue:
@@ -50,7 +53,7 @@ func _process(delta):
 				$Node2D/Label.show()
 				# get lenght of text 
 				
-				#print("text next  ",text_next)
+
 				if start_dialoge:
 					emit_signal("dont_move_chat")
 					var new_dialogue = scene.instantiate()
@@ -89,7 +92,7 @@ func _process(delta):
 func begin_dialogue():
 	
 	text_next += 1
-	
+	print("begin dialogue function called")
 	start_dialoge = true
 	await get_tree().create_timer(1).timeout #100 ms time 
 	emit_signal("dialogue_done")

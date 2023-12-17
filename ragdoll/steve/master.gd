@@ -50,7 +50,8 @@ var time = 1.1 # for bobing head
 signal ensnared_status
 signal free_to_go
 var lenght_proxy = 1.0   # this is the lenght of the path which we fake sometimes to prompto the snake to retarget
-var sequence = 0 # used to control when the snake has stopped moving 
+@export var sequence = 0 # used to control when the snake has stopped moving 
+var state_machine = 0 
 var done_moving_oneshot = false
 var lenght_exception = false
 var move_to_new_target = false
@@ -209,7 +210,7 @@ func _physics_process(delta):
 		else:
 			move_to_new_target = false # not sure if this should go here but it should help the snake stop at the next target
 			speed += .04 # rampup for snake's speed. 
-			speed = clamp(speed,0,9.0)
+			speed = clamp(speed,0,7.0)
 			
 			var bone_count = 18
 			for i in bone_count:
@@ -239,7 +240,7 @@ func _physics_process(delta):
 		# part of code where the steve follower node moves abit just dropping some point 
 		#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 		get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
-
+		dialogue_handle.text_new = ["Hello welcome to \n your dream","dont worry \n im just a \n harmless snake"]
 		# get inial point count 
 		var num_of_points = line.curve.point_count
 
@@ -271,14 +272,15 @@ func _physics_process(delta):
 		print("went here")
 		$AnimationPlayer.play("fade_out") # loops istels ,
 		animation_finished = false 
-		var skeletong_handle = get_node("/root/Node3D/untitled/untitled/Armature (Mecha g)/Skeleton3D")
-		skeletong_handle.pause_simulation = true
+		
 		$untitled.queue_free()
-		
+		remove_child($untitled)
 		var player_new = player_inst.instantiate()
-		player_new.position = Vector3(0,12,0)
+		player_new.position = Vector3(17,-4,37)
 		self.add_child(player_new)
-		
+		player_new.name = "untitled"
+		print_tree_pretty()
+		player = player_new
 		# need to fix tail . 
 
 
@@ -327,13 +329,16 @@ func wave(amplitude:float, freq:int, time:float, delta):
 #
 
 func _on_chase_region_body_entered(body):
+	print("body", body)
 	if body.is_in_group("player_to_stop"):
-		#print(" should see player")
+		print(" should see player")
 		
 		summation_distance += 1 # jump start the distance . 
 		lenght_proxy += 1
 		snake_target = player # add headstart 
+		
 		dialogue_handle.text_new = ["im sorry I lied","I need your help finding my \n hats","follow me"]
+		state_machine = 1
 		sequence = 1
 		ensnared = false # should send snake on its way . 
 		
@@ -341,8 +346,8 @@ func _on_chase_region_body_entered(body):
 func hold_target():
 	move_to_new_target = true
 	print(" conversation finished ")
-	
-	$AnimationPlayer.play("fade_in")
+	if state_machine == 1:
+		$AnimationPlayer.play("fade_in")
 	
 
 
