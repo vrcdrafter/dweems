@@ -99,7 +99,7 @@ func _physics_process(delta):
 
 	if has_all_initial_points:
 		
-		
+		$steve.speed = 9.0
 		#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 		get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
 
@@ -237,6 +237,7 @@ func _physics_process(delta):
 			Snake_skeleton.set_bone_pose_rotation(i, get_node(path).global_transform.basis.get_rotation_quaternion())
 		
 	else:
+		$steve.speed =20
 		# part of code where the steve follower node moves abit just dropping some point 
 		#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 		get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
@@ -263,7 +264,7 @@ func _physics_process(delta):
 			print("summation distance", summation_distance)
 			line.curve.add_point(pos_2,(pos_2-pos_3)*2,(pos_1-pos_2)*2,num_of_points + 1) # successfully adds a point
 
-		if summation_distance > 7:
+		if summation_distance > 2:
 			# ensures it drope enough points to at least have 
 			has_all_initial_points = true
 	
@@ -279,7 +280,7 @@ func _physics_process(delta):
 		player_new.position = Vector3(17,-4,37)
 		self.add_child(player_new)
 		player_new.name = "untitled"
-		print_tree_pretty()
+		
 		player = player_new
 		# need to fix tail . 
 

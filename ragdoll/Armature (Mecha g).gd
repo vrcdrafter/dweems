@@ -138,7 +138,7 @@ func _process(delta):
 				walking_sound = false
 				
 	if flag[8] == 1 and not is_jumping and not landed:
-		print("oneshot signal ",one_shot_sig)
+		
 		if one_shot_sig: # get handle for node
 			print("trying to talk")
 			emit_signal("open_interact")
