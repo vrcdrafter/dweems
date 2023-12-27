@@ -87,7 +87,7 @@ func _process(delta):
 			walking_sound = false
 		else:
 			animation_handle.speed_scale = 1
-			animation_handle.play("walk")
+			animation_handle.play("running_2")
 			walking_sound = true
 	elif not is_jumping and not landed and not interacting:
 		animation_handle.speed_scale = 1

@@ -326,7 +326,7 @@ func wave(amplitude:float, freq:int, time:float, delta):
 		variation = sin(time * freq) * amplitude
 		return variation
 	
-#
+
 
 func _on_chase_region_body_entered(body):
 	print("body", body)
