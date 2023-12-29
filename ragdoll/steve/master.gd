@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var player = $untitled
 @onready var pedistal = $resting_space
+@onready var pedistal_2 = $resting_space2
 var snake_target
 @onready var line = $Path3D
 @onready var Snake_skeleton = get_node("steve2/Armature/Skeleton3D")
@@ -9,6 +10,7 @@ var snake_target
 @onready var path_handle_18 = get_node("Path3D/" + "PathFollow3D18")
 @onready var dialogue_handle = $Path3D/PathFollow3D18/MeshInstance3D/dialoge_system
 @onready var path1 = $Path3D/PathFollow3D
+@onready var hand_handle = get_node("untitled/untitled/Armature (Mecha g)/Skeleton3D/BoneAttachment3D")
 var bone_speed = 3.0
 var length = 0.0
 @onready var heading_handle =$steve  # note steve needs to be close to the player immediatly . and have no clipping ------- >>>>>> ERROR OR IMPROVEMENT
@@ -22,7 +24,8 @@ var catch_up = 0
 var catchup_needed = false
 var governer = 1
 var one_shot = false 
-
+var one_shot_hat = true
+#
 var train_delay = false
 
 # path_list
@@ -128,10 +131,7 @@ func _physics_process(delta):
 			summation_distance = 0 
 			#print("curve length ", length, "number of points ", line.curve.get_baked_points()) 
 			
-
-		
-
-		
+		print("snake target", snake_target)
 		# test for all other points 
 		for x in range(0, curve_array_point.size()):
 			curve_array_point[x] = snake_target.get_node("Path3D").curve.get_point_position(x)
@@ -156,14 +156,19 @@ func _physics_process(delta):
 			if sequence == 3 and snake_target == player and move_to_new_target:  #use a signal instaed 
 				print(" shold go to pedistal now ")
 				ensnared = false 
-				
-				snake_target = pedistal
+				# 
+				snake_target = pedistal_2
 				summation_distance += 1 # jump start the distance . 
 				lenght_proxy += 1 # this is a problem , it will go back into this loop again if ------>
 				emit_signal("free_to_go")
 				sequence = 1
 				lenght_exception = true
 				
+			print("whats in hand top level ",hand_handle.current_hand_item)
+			if hand_handle.current_hand_item != null:
+				if one_shot_hat:
+					player_found_hat()
+					one_shot_hat = false
 				
 			var bone_count = 18
 			for i in bone_count:
@@ -277,7 +282,7 @@ func _physics_process(delta):
 		$untitled.queue_free()
 		remove_child($untitled)
 		var player_new = player_inst.instantiate()
-		player_new.position = Vector3(17,-4,37)
+		player_new.position = Vector3(-5,7,-21)
 		self.add_child(player_new)
 		player_new.name = "untitled"
 		
@@ -350,7 +355,7 @@ func hold_target():
 	if state_machine == 1:
 		$AnimationPlayer.play("fade_in")
 	
-
+# 
 
 func _on_animation_player_animation_finished(anim_name):
 	
@@ -360,3 +365,12 @@ func _on_animation_player_animation_finished(anim_name):
 		animation_finished = true
 		print(" fade in ",animation_finished)
 	
+func player_found_hat():
+	summation_distance += 1 # jump start the distance . 
+	lenght_proxy += 1
+	snake_target = player # add headstart 
+	# 
+	dialogue_handle.text_new = ["you found a HAT , thank you "]
+	state_machine = 2
+	sequence = 1
+	ensnared = false # should send snake on its way . 

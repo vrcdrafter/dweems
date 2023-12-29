@@ -124,7 +124,7 @@ func _process(delta):
 				walking_sound = false
 			interacting = true
 		if pickup_thro_flip_flop == 2:
-			
+			# 
 			print(is_instance_valid(whats_in_hand_haldle.current_hand_item))
 			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
 				interacting = true
