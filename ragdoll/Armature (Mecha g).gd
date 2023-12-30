@@ -201,7 +201,7 @@ func gimme_speech_bub(text_to_say):
 	get_instance_id()
 	
 func hold_all_motion():
-	#print("dont move , least try not to move ")
+	
 	no_movement = true
 
 func resume_all_motion():

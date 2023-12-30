@@ -17,7 +17,7 @@ var collission_shape_handle
 var collission_shape_handle_upper
 var interact_script_handle 
 var snake_handle
-var no_movement = false
+@export var no_movement = false
 var interacting = false
 var dialogue_handle
 
