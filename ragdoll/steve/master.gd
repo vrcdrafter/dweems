@@ -171,6 +171,7 @@ func _physics_process(delta):
 					one_shot_hat = false
 					print(" found a hat")
 					lenght_exception = true
+					has_all_initial_points = false
 			else:
 				one_shot_hat = true
 			var bone_count = 18
