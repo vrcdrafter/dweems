@@ -125,17 +125,19 @@ func _process(delta):
 			interacting = true
 		if pickup_thro_flip_flop == 2:
 			# 
-			print(is_instance_valid(whats_in_hand_haldle.current_hand_item))
-			if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
-				interacting = true
-				animation_handle.speed_scale = 2
-				animation_handle.play("drink")
-				walking_sound = false
-			else :
-				interacting = true
-				animation_handle.speed_scale = 2
-				animation_handle.play("throw")
-				walking_sound = false
+			if is_instance_valid(whats_in_hand_haldle.current_hand_item):
+				if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
+					interacting = true
+					animation_handle.speed_scale = 2
+					animation_handle.play("drink")
+					walking_sound = false
+				else :
+					interacting = true
+					animation_handle.speed_scale = 2
+					animation_handle.play("throw")
+					walking_sound = false
+			else:
+				print(" cand find a valid object ")
 				
 	if flag[8] == 1 and not is_jumping and not landed:
 		

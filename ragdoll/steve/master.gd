@@ -52,6 +52,7 @@ var curve_array_out = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var time = 1.1 # for bobing head
 signal ensnared_status
 signal free_to_go
+signal  remove_hat(current_held_hat)
 var lenght_proxy = 1.0   # this is the lenght of the path which we fake sometimes to prompto the snake to retarget
 @export var sequence = 0 # used to control when the snake has stopped moving 
 var state_machine = 0 
@@ -147,7 +148,7 @@ func _physics_process(delta):
 		
 		
 		# stop routing
-		print("path handle ", path_handle_18.get_progress(), "lenght proxy" , lenght_proxy )
+		# this is the process to stop the snake , 
 		if path_handle_18.get_progress() > lenght_proxy:
 			print(" length")
 			sequence += 1
@@ -214,7 +215,9 @@ func _physics_process(delta):
 				print("sent a signal")
 				emit_signal("ensnared_status")
 				# move player back to beginning 
-				# move snake back to benining 
+				# remove hat if the player has one 
+				if state_machine == 2:
+					remove_hat.emit(hand_handle.current_hand_item)
 				
 			speed = 5.0
 		else:
@@ -251,7 +254,8 @@ func _physics_process(delta):
 		# part of code where the steve follower node moves abit just dropping some point 
 		#get_tree().call_group("enemies","update_target_location",player.global_transform.origin)  # routine for where to go 
 		get_tree().call_group("enemies","update_target_location",snake_target.global_transform.origin) # for going to pedistal
-		dialogue_handle.text_new = ["Hello welcome to \n your dream","dont worry \n im just a \n harmless snake"]
+		if state_machine == 0:
+			dialogue_handle.text_new = ["Hello welcome to \n your dream","dont worry \n im just a \n harmless snake"]
 		# get inial point count 
 		var num_of_points = line.curve.point_count
 

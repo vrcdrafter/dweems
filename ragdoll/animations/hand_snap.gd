@@ -98,17 +98,17 @@ func _process(delta):
 		
 		
 		align_points_1 = hand_point_handle_1.global_transform.origin
+		if is_instance_valid(current_hand_item):  # checks if its valis because the maser script too has a function to remove the item. 
+			zoom_point(current_hand_item, align_points_1)
 		
-		zoom_point(current_hand_item, align_points_1)
-		
-		var quat_align = calc_angular_velocity(current_hand_item,hand_point_handle_1)
-		
-		current_hand_item.angular_velocity = quat_align
-		
-		# get me a list of all bodies in collission shape
-		if destroy_item_bool:
-			current_hand_item.queue_free()
-			item_snapping = false
+			var quat_align = calc_angular_velocity(current_hand_item,hand_point_handle_1)
+			
+			current_hand_item.angular_velocity = quat_align
+			
+			# get me a list of all bodies in collission shape
+			if destroy_item_bool:
+				current_hand_item.queue_free()
+				item_snapping = false
 
 	else:
 		collission_shape_handle = get_node("../../../Area3D")
