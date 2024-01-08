@@ -28,3 +28,6 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	in_bed_area = false
+
+
+

@@ -80,8 +80,7 @@ func _ready():
 	for i in bone_count:
 	
 		var handle_temp = get_node("/root/Node3D/Path3D/PathFollow3D" + str(i+1))
-		print(handle_temp)
-		print("i", i)
+
 		handle_temp.progress = 2 + float(i)/2
 		
 	
@@ -150,7 +149,7 @@ func _physics_process(delta):
 		# stop routing
 		# this is the process to stop the snake , 
 		if path_handle_18.get_progress() > lenght_proxy:
-			print(" length")
+			
 			sequence += 1
 			
 			sequence = clamp(sequence,0,3)
@@ -204,15 +203,15 @@ func _physics_process(delta):
 				var curve_point_out = move_point(curve_array_point[i],snake_target.get_node("Path3D"))
 				if sequence != 1: # if you dont have this then it will drop a point back at the pedistal right after ensaring the player 
 					line.curve.add_point(curve_point_pos,Vector3(0,0,0),Vector3(0,0,0),num_of_points_at_moment + 1)
-				#print("new first point",curve_point_pos)
+				
 				
 				i += 1
 			
 			if sequence != 1: # need to have this so that it drops points when it moves to the next target
 				ensnared = true # this causes a problem
-			print("sequence", sequence)
+			
 			if snake_target.is_in_group("player_to_stop") and sequence > 1: # remember sequence 3 is traveling snake , you cant be ensnared when travling
-				print("sent a signal")
+				
 				emit_signal("ensnared_status")
 				# move player back to beginning 
 				# remove hat if the player has one 
@@ -271,11 +270,10 @@ func _physics_process(delta):
 		
 		summation_distance += abs(pos_2.length() - pos_1.length())
 		
-		#print("total traveled distnace", summation_distance)
-		#print("summation distance ", summation_distance, "ensnared ", ensnared)
+		
 		if summation_distance > .1 and not ensnared:
 			
-			print("summation distance", summation_distance)
+			
 			line.curve.add_point(pos_2,(pos_2-pos_3)*2,(pos_1-pos_2)*2,num_of_points + 1) # successfully adds a point
 
 		if summation_distance > 2:
@@ -284,7 +282,7 @@ func _physics_process(delta):
 	
 	
 	if animation_finished:
-		print("went here")
+		
 		$AnimationPlayer.play("fade_out") # loops istels ,
 		animation_finished = false 
 		
@@ -346,7 +344,7 @@ func wave(amplitude:float, freq:int, time:float, delta):
 
 
 func _on_chase_region_body_entered(body):
-	print("body", body)
+	
 	if body.is_in_group("player_to_stop"):
 		print(" should see player")
 		
@@ -385,3 +383,6 @@ func player_found_hat():
 	state_machine = 2
 	sequence = 1
 	ensnared = false # should send snake on its way . 
+
+
+

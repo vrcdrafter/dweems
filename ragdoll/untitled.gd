@@ -89,10 +89,10 @@ func _physics_process(delta: float) -> void:
 	# begin routine for pickup and throw 
 
 	
-	if Input.get_action_strength("interact") > 0 and is_on_floor() and (collission_shape_handle.has_overlapping_bodies() or collission_shape_handle_upper.has_overlapping_bodies()  or (interact_script_handle.pickup_thro_flip_flop == 2)): 
+	if Input.get_action_strength("interact") > 0 and is_on_floor() and (collission_shape_handle.has_overlapping_bodies() or collission_shape_handle_upper.has_overlapping_bodies() or (interact_script_handle.pickup_thro_flip_flop == 2)): 
 		
 		animation_flags[6] = 1
-		
+		print("trying to pickup")
 		
 	else:
 		animation_flags[6] = 0

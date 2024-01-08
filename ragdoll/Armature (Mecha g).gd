@@ -18,7 +18,7 @@ var dialogue_handle
 signal open_interact
 @export var one_shot_sig = true
 var tv_handl
-
+var snake_took_item = false
 @export var pickup_thro_flip_flop = 1
 
 @export var walking_sound = true
@@ -112,6 +112,7 @@ func _process(delta):
 # begin routine for aux animations 
 	if flag[6] == 1 and not is_jumping and not landed:
 		walking_sound = false
+		print("pickup flip flop ", pickup_thro_flip_flop)
 		if pickup_thro_flip_flop == 1:
 			# decide whether its a upper object or lower object
 			if is_upper_handle.has_overlapping_bodies():
@@ -124,7 +125,7 @@ func _process(delta):
 				walking_sound = false
 			interacting = true
 		if pickup_thro_flip_flop == 2:
-			# 
+			
 			if is_instance_valid(whats_in_hand_haldle.current_hand_item):
 				if whats_in_hand_haldle.current_hand_item.is_in_group("food"): # need to check if item exists , Never fixed this . 
 					interacting = true
@@ -137,7 +138,7 @@ func _process(delta):
 					animation_handle.play("throw")
 					walking_sound = false
 			else:
-				print(" cand find a valid object ")
+				pass
 				
 	if flag[8] == 1 and not is_jumping and not landed:
 		
@@ -170,6 +171,7 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		pickup_thro_flip_flop = 2
 		interacting = false
 		print("finished picking up ")
+		
 	
 	if anim_name == "throw":
 		pickup_thro_flip_flop = 1
@@ -188,7 +190,10 @@ func _on_animation_player_animation_finished(anim_name): # action , need to have
 		pickup_thro_flip_flop = 2
 		
 		interacting = false
-
+	if snake_took_item:
+		pickup_thro_flip_flop = 1 
+		snake_took_item = false
+		interacting = false
 
 
 func gimme_speech_bub(text_to_say):
@@ -217,3 +222,8 @@ func can_talk_again():
 	
 
 	
+
+
+func _on_node_3d_remove_hat(current_held_hat):
+	pickup_thro_flip_flop = 1 # resets this for when the snake grabs the hat
+	snake_took_item = true

@@ -65,11 +65,12 @@ func pickup_item(): # called during the pickup animaton
 	item_one_shot = true
 func pickup_throw():  # called during the throw animation 
 	
-	item_snapping = false
+	
 	item_one_shot = false
 func destroy_item():
 	destroy_item_bool = true
 	item_one_shot = false
+	
 	
 
 func _ready():
@@ -81,8 +82,8 @@ func _ready():
 func _process(delta):
 	
 	
-	
-	
+	# 
+	# needs to reset item snapping when ready . 
 	if item_snapping and ((item_handle_group.size() != 0) or (item_handle_group_high.size() != 0)):
 		if item_one_shot:
 			if collission_shape_handle_high.has_overlapping_bodies():
@@ -128,3 +129,7 @@ func _process(delta):
 
 
 
+
+
+func _on_node_3d_remove_hat(current_held_hat):
+	destroy_item()
